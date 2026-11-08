@@ -6,7 +6,7 @@ source_url:
 license: synthetic
 synthetic: true
 domain: tata-kelola
-notes: EN-11, EN-12. Few patterns, so the notice changed little. Conflict of Interest, Internal Audit, 3 working days and 1 December 2026 left intact.
+notes: EN-02, EN-07 and EN-11 in Purpose, EN-11 in Scope, EN-06 and EN-12 in Requirement. Conflict of Interest, Internal Audit, 3 working days and 1 December 2026 left intact.
 ---
 
 ## Before
@@ -17,7 +17,7 @@ Declaration of Conflicts of Interest for Procurement Staff
 
 Purpose
 
-This notice sets out a mandatory requirement for all staff involved in procurement activities to declare any Conflict of Interest. The requirement is intended to protect the integrity of the procurement process, to safeguard the organization's reputation, and to ensure that decisions are made fairly and impartially.
+It is important to note that this notice sets out a mandatory requirement for the making of a declaration of any Conflict of Interest by all staff involved in procurement activities. The requirement is intended not only to protect the integrity of the procurement process but also to safeguard the organization's reputation and to ensure that decisions are made fairly and impartially.
 
 Scope
 
@@ -25,7 +25,7 @@ This requirement applies to every member of staff who takes part in any stage of
 
 Requirement
 
-Any staff member who identifies a Conflict of Interest must declare it in writing. Declarations must be submitted to Internal Audit within 3 working days of the conflict becoming known to the staff member.
+Furthermore, any staff member who identifies a Conflict of Interest must make a declaration of it in writing. Moreover, declarations must be submitted to Internal Audit within 3 working days of the conflict becoming known to the staff member.
 
 Effective Date
 
@@ -71,4 +71,4 @@ Questions about this notice should be directed to Internal Audit.
 
 ## Notes
 
-EN-11, EN-12. Few patterns, so the notice changed little. Conflict of Interest, Internal Audit, 3 working days and 1 December 2026 left intact.
+EN-02, EN-07 and EN-11 in Purpose, EN-11 in Scope, EN-06 and EN-12 in Requirement. Conflict of Interest, Internal Audit, 3 working days and 1 December 2026 left intact.
