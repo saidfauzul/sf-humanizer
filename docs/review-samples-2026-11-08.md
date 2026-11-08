@@ -20,7 +20,6 @@ Hasil: 21 ok, 13 revised, 54 regenerated. Pada tinjauan kedua, 18 dari 67 berkas
 - Semua teks tetap buatan model dan bertanda `synthetic`. Penilaian kualitas ini juga dilakukan model.
 - Teks "sebelum" yang dibuat ulang memuat pola yang sengaja disisipkan ke teks "sesudah". Sebagian terasa dibuat-buat, misalnya pembuka formula dalam pesan santai, dan polanya lebih mudah dikenali daripada keluaran model yang sebenarnya.
 - `en-chat-pair-001` dan `en-chat-pair-002` masih panjang untuk chat, karena harus memuat semua fakta dan minimal 150 kata.
-- `id-standar-pair-001` mendefinisikan Pengadaan Langsung dengan ciri yang lebih dekat ke Penunjukan Langsung (menunjuk satu penyedia, kebutuhan mendesak). Isinya dibiarkan karena fakta dikunci, dan perlu diperiksa pemilik repo.
 - `en-standard-pair-001` memakai "Framework Agreement" dan "framework agreements" pada teks yang sama. Ini perlu dikonfirmasi.
 
 ## Per berkas
