@@ -38,8 +38,8 @@ Istilah pengadaan dan tata kelola berikut dipertahankan persis seperti ditulis, 
 - Tender
 - Tender Cepat
 - Seleksi
-- Pengadaan Langsung
-- Penunjukan Langsung
+- Pengadaan Langsung: menunjuk satu Penyedia untuk pengadaan bernilai kecil, dibatasi nilai.
+- Penunjukan Langsung: menunjuk satu Penyedia tanpa batas nilai, dengan kriteria khusus seperti penyedia tunggal atau kesatuan sistem yang memerlukan kesinambungan pengetahuan.
 - E-purchasing
 - Swakelola
 - Kualifikasi
