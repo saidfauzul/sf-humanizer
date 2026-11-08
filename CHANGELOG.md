@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Skill core in `SKILL.md`: invocation, presets, modes, workflow and core rules.
+- Indonesian and English pattern catalogs.
+- Locking rules and Indonesian and English glossaries.
+- Validator checks for reference size, preset names in generic rules, internal links and stated counts.
+
+### Changed
+
+- `SKILL.md` may carry a pre-release version newer than the top released changelog entry.
+- CI uses `actions/checkout@v5` and runs on `ubuntu-24.04`.
+
 ## [0.0.1] - 2026-11-08
 
 ### Added
