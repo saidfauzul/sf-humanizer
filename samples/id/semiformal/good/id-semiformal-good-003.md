@@ -11,15 +11,15 @@ notes: Laporan singkat tim layanan aset. Isinya fiktif.
 
 Laporan Singkat Tim Layanan Aset, Oktober 2026
 
-Oktober ini kami menerima 63 tiket, naik dari 41 pada September. Lonjakannya hampir semua datang dari satu sebab: pembaruan sistem operasi pada 6 Oktober membuat 28 laptop model lama tidak bisa tersambung ke pencetak bersama.
+Oktober ini kami menerima 63 tiket, naik dari 41 pada September. Lonjakan itu hampir seluruhnya datang dari satu sebab: pembaruan sistem operasi pada 6 Oktober membuat 28 laptop model lama tidak bisa tersambung ke printer bersama.
 
-Dimas Contoh menemukan perbaikannya pada hari ketiga, berupa pemasangan ulang pengandar pencetak. Pekerjaannya lima belas menit per laptop, tetapi harus didatangi satu per satu karena pengguna tidak punya hak pasang. Semua selesai 16 Oktober.
+Dimas Contoh menemukan cara memperbaikinya pada hari ketiga, yaitu memasang ulang driver printer. Pekerjaannya lima belas menit per laptop, tetapi laptopnya harus didatangi satu per satu karena pengguna tidak punya hak untuk memasangnya sendiri. Semua selesai 16 Oktober.
 
-Waktu respons rata-rata memburuk dari 4 jam menjadi 7 jam. Target kami 6 jam, jadi bulan ini kami meleset. Tiket di luar urusan pencetak ikut menunggu karena dua dari empat orang tim dikerahkan keliling gedung.
+Waktu respons rata-rata memburuk dari 4 jam menjadi 7 jam. Target kami 6 jam, jadi bulan ini kami meleset. Tiket di luar urusan printer ikut menunggu karena dua dari empat orang tim dikerahkan keliling gedung.
 
 Dua laptop tidak tertolong. Keduanya buatan 2017 dan sudah kami usulkan untuk dihapus dari daftar aset. Berkasnya ada di Nuri Contoh, menunggu tanda tangan kepala bagian.
 
-Untuk November, kami minta pembaruan sistem dijadwalkan bertahap, 20 laptop per hari, dan diuji dulu pada satu laptop tiap model. Usulan ini sudah dikirim ke Tim Infrastruktur pada 2 November dan belum dijawab. Kalau sampai pertengahan bulan masih diam, saya akan membawanya ke rapat koordinasi.
+Untuk November, kami minta pembaruan sistem dijadwalkan bertahap, 20 laptop per hari, dan diuji dulu pada satu laptop tiap model. Usulan ini sudah dikirim ke Tim Infrastruktur pada 2 November dan belum dijawab. Kalau sampai pertengahan bulan belum ada jawaban, saya akan membawanya ke rapat koordinasi.
 
 Tari Contoh
 Ketua Tim Layanan Aset
