@@ -12,10 +12,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Indonesian and English pattern catalogs.
 - Locking rules and Indonesian and English glossaries.
 - Validator checks for reference size, preset names in generic rules, internal links and stated counts.
+- Wave 1 corpus: 24 synthetic samples for three presets, pending owner review.
+- `docs/sources.md`, `docs/synthetic-prompts.md` and `docs/PLAN.md`.
+- Sample validation for frontmatter, ids and pair sections.
 
 ### Changed
 
 - `SKILL.md` may carry a pre-release version newer than the top released changelog entry.
+- Sample ids now use `<lang>-<register>-<good|pair>-NNN`.
 - CI uses `actions/checkout@v5` and runs on `ubuntu-24.04`.
 
 ## [0.0.1] - 2026-11-08

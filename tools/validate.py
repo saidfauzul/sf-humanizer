@@ -14,6 +14,11 @@ Count heuristic: a non-list line ending in a colon that contains a number word f
 one to ten (English or Indonesian) followed by another word, and that is immediately
 followed by a list, must introduce exactly that many top-level items. Phrases such as
 "one of", "salah satu" and "two or three" are not treated as counts.
+
+Sample rule: every Markdown file in a register's good/ or pairs/ folder needs the
+frontmatter fields from CONTRIBUTING.md. Its id must be unique and match its location
+as <lang>-<register>-<good|pair>-NNN. A sample is synthetic exactly when its license
+is synthetic. Pair files need the before, after and notes sections of their language.
 """
 
 from __future__ import annotations
@@ -49,6 +54,12 @@ NUMBER_WORDS = {
         )
     ),
 }
+
+SAMPLE_FIELDS = ("id", "kind", "source", "source_url", "license", "synthetic", "domain", "notes")
+SAMPLE_LICENSES = ("public-domain", "OGL-3.0", "CC-BY-4.0", "original", "synthetic")
+SAMPLE_DOMAINS = ("pengadaan", "tata-kelola", "sop", "nota-dinas", "surel", "umum")
+SAMPLE_KINDS = {"good": "good", "pairs": "pair"}
+PAIR_SECTIONS = {"id": ("Sebelum", "Sesudah", "Catatan"), "en": ("Before", "After", "Notes")}
 
 FRONTMATTER_RE = re.compile(r"\A---\r?\n(.*?)\r?\n---\s*(?:\r?\n|\Z)", re.DOTALL)
 VERSION_RE = re.compile(r"^version:\s*[\"']?([^\s\"']+)[\"']?\s*$", re.MULTILINE)
@@ -256,11 +267,77 @@ def check_counts(root: Path) -> list[str]:
     return errors
 
 
+def parse_frontmatter(text: str) -> dict[str, str] | None:
+    """Return simple key-value frontmatter, or None if the text has none."""
+    frontmatter = FRONTMATTER_RE.match(text)
+    if frontmatter is None:
+        return None
+    fields = {}
+    for line in frontmatter.group(1).splitlines():
+        key, separator, value = line.partition(":")
+        if separator:
+            fields[key.strip()] = value.strip().strip("\"'")
+    return fields
+
+
+def check_sample_file(path: Path, language: str, register: str, kind: str) -> list[str]:
+    """Check one sample file against the sample rule."""
+    text = path.read_text(encoding="utf-8")
+    fields = parse_frontmatter(text)
+    if fields is None:
+        return ["has no frontmatter"]
+
+    missing = [field for field in SAMPLE_FIELDS if field not in fields]
+    if missing:
+        return [f"is missing frontmatter fields: {', '.join(missing)}"]
+
+    errors = []
+    if fields["kind"] != kind:
+        errors.append(f"has kind {fields['kind']} but its folder expects {kind}")
+    if fields["license"] not in SAMPLE_LICENSES:
+        errors.append(f"has invalid license {fields['license']}")
+    if fields["domain"] not in SAMPLE_DOMAINS:
+        errors.append(f"has invalid domain {fields['domain']}")
+    if fields["synthetic"] not in ("true", "false"):
+        errors.append(f"has invalid synthetic value {fields['synthetic']}")
+    elif (fields["synthetic"] == "true") != (fields["license"] == "synthetic"):
+        errors.append("must be synthetic exactly when its license is synthetic")
+    if not re.fullmatch(rf"{language}-{register}-{kind}-\d{{3}}", fields["id"]):
+        errors.append(f"has id {fields['id']}; expected {language}-{register}-{kind}-NNN")
+    if kind == "pair":
+        for section in PAIR_SECTIONS[language]:
+            if not re.search(rf"^##\s+{section}\s*$", text, re.MULTILINE):
+                errors.append(f"is missing section {section}")
+    return errors
+
+
+def check_sample_files(root: Path) -> list[str]:
+    """Check the frontmatter, ids and sections of every sample."""
+    errors = []
+    seen: dict[str, Path] = {}
+    for folder in SAMPLE_FOLDERS:
+        language, register = folder.split("/")
+        for subfolder, kind in SAMPLE_KINDS.items():
+            for path in sorted((root / "samples" / folder / subfolder).glob("*.md")):
+                relative = path.relative_to(root)
+                errors += [
+                    f"{relative} {error}"
+                    for error in check_sample_file(path, language, register, kind)
+                ]
+                sample_id = (parse_frontmatter(path.read_text(encoding="utf-8")) or {}).get("id")
+                if sample_id in seen:
+                    errors.append(f"{relative} repeats id {sample_id} from {seen[sample_id]}")
+                elif sample_id:
+                    seen[sample_id] = relative
+    return errors
+
+
 def validate(root: Path) -> list[str]:
     """Run all checks and return the error messages."""
     return (
         check_skill(root)
         + check_samples(root)
+        + check_sample_files(root)
         + check_reference_sizes(root)
         + check_preset_names(root)
         + check_links(root)
