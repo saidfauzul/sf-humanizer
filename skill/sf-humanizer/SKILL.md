@@ -1,7 +1,7 @@
 ---
 name: sf-humanizer
 description: Rewrites AI-sounding text so it reads as human-written, with facts unchanged. Works in Indonesian and English, with presets by language and register. Use when the user says "sf-humanizer", "humanize", "manusiakan", or "tulis ulang agar natural".
-version: 0.1.0-alpha.3
+version: 0.1.0-beta.1
 ---
 
 # sf-humanizer
@@ -38,7 +38,7 @@ If the request gives no text, ask for it. Mixed-language text uses the language 
 | en | email | `references/presets/en-email.md` | Work email |
 | en | chat | `references/presets/en-chat.md` | Instant messages: short, direct lines |
 
-If the preset file is missing or has `status: stub`, apply the general rules with the register description in this table.
+If the preset file is missing, apply the general rules with the register description in this table.
 
 An unknown combination is not an error. Say that the preset does not exist and use the nearest one; for example, id chat becomes id informal.
 
