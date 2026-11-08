@@ -23,7 +23,7 @@ Sehubungan dengan hal tersebut, kami mohon Divisi Umum menyediakan dua petugas d
 
 Kontrak yang masih dalam masa pemeliharaan tidak ikut dipindahkan. Daftarnya kami lampirkan agar tidak tertukar saat pengangkutan.
 
-Bila tanggal tersebut berbenturan dengan jadwal Divisi Umum, mohon kami dikabari paling lambat 12 November 2026 supaya jadwalnya dapat kami geser.
+Bila tanggal tersebut berbenturan dengan jadwal Divisi Umum, mohon kami diberi tahu paling lambat 12 November 2026 agar jadwalnya dapat kami geser.
 
 Demikian disampaikan. Atas perhatian dan bantuan Saudara, kami ucapkan terima kasih.
 

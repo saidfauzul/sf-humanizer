@@ -6,7 +6,7 @@ source_url:
 license: synthetic
 synthetic: true
 domain: nota-dinas
-notes: ID-01, ID-07. Sehubungan dengan, Dengan hormat, dan salam penutup dipertahankan karena diwajibkan format nota dinas.
+notes: ID-01 pada kalimat pembuka, ID-06 pada paragraf pertama sampai ketiga, ID-07 pada paragraf pertama dan kedua, ID-02 pada paragraf kedua. Sehubungan dengan, Dengan hormat, dan salam penutup dipertahankan karena diwajibkan format nota dinas.
 ---
 
 ## Sebelum
@@ -20,11 +20,11 @@ Perihal : Permintaan Data Realisasi Anggaran Triwulan III
 
 Dengan hormat,
 
-Dalam rangka penyusunan Rencana Umum Pengadaan (RUP) tahun 2027, Divisi Pengadaan memerlukan data realisasi anggaran triwulan III tahun 2026 sebagai salah satu dasar perhitungan kebutuhan dan prioritas pengadaan. Data tersebut akan digunakan untuk memetakan pos anggaran yang telah terserap, serta pos yang masih memerlukan penyesuaian pada tahun anggaran berikutnya, sehingga perencanaan pengadaan dapat disusun secara realistis dan sesuai kemampuan anggaran.
+Dalam rangka untuk penyusunan Rencana Umum Pengadaan (RUP) tahun 2027, Divisi Pengadaan memerlukan data realisasi anggaran triwulan III tahun 2026 sebagai salah satu dasar perhitungan kebutuhan dan prioritas pengadaan. Data itu akan digunakan untuk melakukan pemetaan pos anggaran yang telah terserap dan pos yang masih perlu disesuaikan pada tahun anggaran berikutnya, sehingga penyusunan perencanaan pengadaan dapat dilakukan secara realistis dan sesuai dengan kemampuan anggaran.
 
-Sehubungan dengan hal tersebut, kami mohon Divisi Keuangan berkenan menyampaikan data realisasi anggaran triwulan III dalam bentuk rincian per kode akun dan per unit kerja. Data dimohonkan dapat kami terima paling lambat 20 November 2026 agar tahapan penyusunan RUP dapat berjalan sesuai jadwal yang telah ditetapkan.
+Sehubungan dengan hal tersebut, kami mohon Divisi Keuangan berkenan melakukan penyampaian data realisasi anggaran triwulan III dengan rincian per kode akun dan per unit kerja. Perlu digarisbawahi bahwa data tersebut kami mohon dapat kami terima paling lambat 20 November 2026 agar pelaksanaan penyusunan RUP berjalan sesuai dengan jadwal yang telah ditetapkan.
 
-Apabila terdapat data yang belum final atau memerlukan konfirmasi lebih lanjut, kami mohon agar keterangannya dapat disampaikan bersama dengan data yang tersedia. Kami akan menindaklanjuti setiap catatan tersebut bersama tim terkait.
+Bila ada data yang belum final atau masih perlu dikonfirmasi, mohon keterangannya disampaikan bersama data yang tersedia. Kami akan melakukan tindak lanjut atas setiap catatan itu bersama tim terkait.
 
 Atas perhatian dan kerja sama Divisi Keuangan, kami ucapkan terima kasih.
 
@@ -43,9 +43,9 @@ Perihal : Permintaan Data Realisasi Anggaran Triwulan III
 
 Dengan hormat,
 
-Untuk menyusun Rencana Umum Pengadaan (RUP) tahun 2027, Divisi Pengadaan memerlukan data realisasi anggaran triwulan III tahun 2026 sebagai salah satu dasar menghitung kebutuhan dan prioritas pengadaan. Dengan data itu kami akan memetakan pos anggaran yang telah terserap dan pos yang masih perlu disesuaikan pada tahun anggaran berikutnya, sehingga perencanaan pengadaan realistis dan sesuai dengan kemampuan anggaran.
+Untuk menyusun Rencana Umum Pengadaan (RUP) tahun 2027, Divisi Pengadaan memerlukan data realisasi anggaran triwulan III tahun 2026 sebagai salah satu dasar untuk menghitung kebutuhan dan prioritas pengadaan. Dengan data itu kami akan memetakan pos anggaran yang telah terserap dan pos yang masih perlu disesuaikan pada tahun anggaran berikutnya, sehingga perencanaan pengadaan dapat disusun secara realistis dan sesuai dengan kemampuan anggaran.
 
-Sehubungan dengan hal tersebut, kami mohon Divisi Keuangan berkenan menyampaikan data realisasi anggaran triwulan III dengan rincian per kode akun dan per unit kerja. Kami mohon data tersebut diterima paling lambat 20 November 2026 agar penyusunan RUP berjalan sesuai dengan jadwal yang telah ditetapkan.
+Sehubungan dengan hal tersebut, kami mohon Divisi Keuangan berkenan menyampaikan data realisasi anggaran triwulan III dengan rincian per kode akun dan per unit kerja. Kami mohon data tersebut dapat kami terima paling lambat 20 November 2026 agar penyusunan RUP berjalan sesuai dengan jadwal yang telah ditetapkan.
 
 Bila ada data yang belum final atau masih perlu dikonfirmasi, mohon keterangannya disampaikan bersama data yang tersedia. Kami akan menindaklanjuti setiap catatan itu bersama tim terkait.
 
@@ -57,4 +57,4 @@ Kepala Divisi Pengadaan
 
 ## Catatan
 
-ID-01, ID-07. Sehubungan dengan, Dengan hormat, dan salam penutup dipertahankan karena diwajibkan format nota dinas.
+ID-01 pada kalimat pembuka, ID-06 pada paragraf pertama sampai ketiga, ID-07 pada paragraf pertama dan kedua, ID-02 pada paragraf kedua. Sehubungan dengan, Dengan hormat, dan salam penutup dipertahankan karena diwajibkan format nota dinas.

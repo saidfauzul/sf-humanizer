@@ -13,7 +13,7 @@ Nomor : UND-022/XI/2026
 Lampiran : 1 (satu) berkas
 Hal : Undangan Pemberian Penjelasan
 
-Yth. Direktur PT Maju Contoh
+Yth. Direktur PT Karya Contoh
 di tempat
 
 Dengan hormat,
@@ -26,7 +26,7 @@ Tempat : Ruang Rapat Contoh 3, Gedung Contoh A
 
 Pada rapat tersebut Pokja Pemilihan akan menjelaskan isi Dokumen Pemilihan, jadwal Tender, dan syarat Jaminan Penawaran. Peserta dapat mengajukan pertanyaan secara lisan pada rapat atau secara tertulis paling lambat satu hari kerja sebelum rapat.
 
-Setiap peserta diwakili paling banyak dua orang. Wakil yang hadir membawa surat kuasa dari direktur dan kartu identitas. Daftar pertanyaan yang sudah disiapkan dapat dikirim lebih dulu agar jawabannya dapat kami siapkan.
+Setiap peserta diwakili paling banyak dua orang. Wakil yang hadir membawa surat kuasa dari direktur dan kartu identitas. Daftar pertanyaan yang sudah disiapkan dapat dikirim lebih dahulu agar jawabannya dapat kami siapkan.
 
 Seluruh penjelasan dan perubahan yang timbul dari rapat ini akan dituangkan dalam Berita Acara dan menjadi bagian dari Dokumen Pemilihan. Peserta yang tidak hadir tetap terikat pada isi Berita Acara tersebut.
 
