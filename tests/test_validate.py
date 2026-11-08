@@ -288,6 +288,60 @@ def test_pair_missing_section(repo: Path, relative: str, section: str) -> None:
     assert any(f"missing section {section}" in e for e in validate.validate(repo))
 
 
+def write_preset(repo: Path, name: str, status: str, sections: tuple[str, ...]) -> Path:
+    body = "".join(f"## {section}\n\nText.\n\n" for section in sections)
+    text = f"---\nname: x\nstatus: {status}\nmetrics:\n  a: {{median: 1}}\n---\n\n{body}"
+    return write_reference(repo, f"presets/{name}", text)
+
+
+@pytest.mark.parametrize("language", ["id", "en"])
+def test_ready_preset_passes(repo: Path, language: str) -> None:
+    write_preset(repo, f"{language}-formal.md", "ready", validate.PRESET_SECTIONS[language])
+    assert validate.validate(repo) == []
+
+
+def test_stub_preset_needs_no_sections(repo: Path) -> None:
+    write_preset(repo, "id-formal.md", "stub", ())
+    assert validate.validate(repo) == []
+
+
+def test_preset_missing_section(repo: Path) -> None:
+    write_preset(repo, "id-formal.md", "ready", validate.PRESET_SECTIONS["id"][:-1])
+    assert any("sections in order" in e for e in validate.validate(repo))
+
+
+def test_preset_sections_out_of_order(repo: Path) -> None:
+    sections = tuple(reversed(validate.PRESET_SECTIONS["en"]))
+    write_preset(repo, "en-chat.md", "ready", sections)
+    assert any("sections in order" in e for e in validate.validate(repo))
+
+
+def test_preset_uses_sections_of_its_language(repo: Path) -> None:
+    write_preset(repo, "en-chat.md", "ready", validate.PRESET_SECTIONS["id"])
+    assert any("sections in order" in e for e in validate.validate(repo))
+
+
+def test_preset_invalid_status(repo: Path) -> None:
+    write_preset(repo, "id-formal.md", "draft", ())
+    assert any("invalid status" in e for e in validate.validate(repo))
+
+
+def test_preset_without_metrics(repo: Path) -> None:
+    write_reference(repo, "presets/id-formal.md", "---\nname: x\nstatus: stub\n---\n\nX\n")
+    assert any("no metrics block" in e for e in validate.validate(repo))
+
+
+def test_preset_without_frontmatter(repo: Path) -> None:
+    write_reference(repo, "presets/id-formal.md", "No frontmatter\n")
+    assert any("has no frontmatter" in e for e in validate.validate(repo))
+
+
+def test_preset_at_size_limit_fails(repo: Path) -> None:
+    path = write_preset(repo, "id-formal.md", "stub", ())
+    path.write_text(path.read_text("utf-8") + "x" * validate.MAX_PRESET_BYTES, "utf-8")
+    assert any("must be under 6144" in e for e in validate.validate(repo))
+
+
 def test_main_exit_codes(repo: Path) -> None:
     assert validate.main(["--root", str(repo)]) == 0
     (repo / validate.SKILL_PATH).unlink()

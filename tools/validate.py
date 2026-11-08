@@ -19,6 +19,10 @@ Sample rule: every Markdown file in a register's good/ or pairs/ folder needs th
 frontmatter fields from CONTRIBUTING.md. Its id must be unique and match its location
 as <lang>-<register>-<good|pair>-NNN. A sample is synthetic exactly when its license
 is synthetic. Pair files need the before, after and notes sections of their language.
+
+Preset rule: every file in references/presets/ is under MAX_PRESET_BYTES, has status
+ready or stub and a metrics block in its frontmatter, and a ready file has the six
+section headings of its language in order.
 """
 
 from __future__ import annotations
@@ -30,8 +34,10 @@ from pathlib import Path
 
 MAX_SKILL_BYTES = 20 * 1024
 MAX_REFERENCE_BYTES = 15 * 1024
+MAX_PRESET_BYTES = 6 * 1024
 SKILL_PATH = Path("skill/sf-humanizer/SKILL.md")
 REFERENCES_PATH = Path("skill/sf-humanizer/references")
+PRESETS_PATH = REFERENCES_PATH / "presets"
 CHANGELOG_PATH = Path("CHANGELOG.md")
 REGISTERS = {
     "id": ("formal", "semiformal", "informal", "standar", "email"),
@@ -60,6 +66,25 @@ SAMPLE_LICENSES = ("public-domain", "OGL-3.0", "CC-BY-4.0", "original", "synthet
 SAMPLE_DOMAINS = ("pengadaan", "tata-kelola", "sop", "nota-dinas", "surel", "umum")
 SAMPLE_KINDS = {"good": "good", "pairs": "pair"}
 PAIR_SECTIONS = {"id": ("Sebelum", "Sesudah", "Catatan"), "en": ("Before", "After", "Notes")}
+
+PRESET_SECTIONS = {
+    "id": (
+        "Tujuan register",
+        "Ciri yang dicari",
+        "Penyesuaian pola",
+        "Contoh kalimat",
+        "Batas",
+        "Rujukan",
+    ),
+    "en": (
+        "Register purpose",
+        "Target features",
+        "Pattern adjustments",
+        "Mini examples",
+        "Limits",
+        "References",
+    ),
+}
 
 FRONTMATTER_RE = re.compile(r"\A---\r?\n(.*?)\r?\n---\s*(?:\r?\n|\Z)", re.DOTALL)
 VERSION_RE = re.compile(r"^version:\s*[\"']?([^\s\"']+)[\"']?\s*$", re.MULTILINE)
@@ -332,6 +357,37 @@ def check_sample_files(root: Path) -> list[str]:
     return errors
 
 
+def check_preset_file(path: Path) -> list[str]:
+    """Check one preset file against the preset rule."""
+    errors = []
+    size = path.stat().st_size
+    if size >= MAX_PRESET_BYTES:
+        errors.append(f"is {size} bytes; it must be under {MAX_PRESET_BYTES}")
+    text = path.read_text(encoding="utf-8")
+    fields = parse_frontmatter(text)
+    if fields is None:
+        return [*errors, "has no frontmatter"]
+    status = fields.get("status")
+    if status not in ("ready", "stub"):
+        errors.append(f"has invalid status {status}")
+    if "metrics" not in fields:
+        errors.append("has no metrics block")
+    if status == "ready":
+        sections = PRESET_SECTIONS[path.name[:2]]
+        found = re.findall(r"^##\s+(.+?)\s*$", text, re.MULTILINE)
+        if [heading for heading in found if heading in sections] != list(sections):
+            errors.append(f"must have these sections in order: {', '.join(sections)}")
+    return errors
+
+
+def check_presets(root: Path) -> list[str]:
+    """Check every preset file."""
+    errors = []
+    for path in sorted((root / PRESETS_PATH).glob("*.md")):
+        errors += [f"{path.relative_to(root)} {error}" for error in check_preset_file(path)]
+    return errors
+
+
 def validate(root: Path) -> list[str]:
     """Run all checks and return the error messages."""
     return (
@@ -339,6 +395,7 @@ def validate(root: Path) -> list[str]:
         + check_samples(root)
         + check_sample_files(root)
         + check_reference_sizes(root)
+        + check_presets(root)
         + check_preset_names(root)
         + check_links(root)
         + check_counts(root)
