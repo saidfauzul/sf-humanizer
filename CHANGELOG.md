@@ -12,6 +12,7 @@ Version `0.1.0-alpha.2` was folded into `0.1.0-alpha.3`, because Tahap 2 did not
 
 - `scripts/metrics.py`: sentence, pattern and count metrics, `--compare` and `--check-locked`.
 - `tools/build.py`: generated examples and preset metric profiles, with a `--check` mode used by CI.
+- Acceptance inputs and run evidence in `tests/manual/`, a test report, and a manual test guide for claude.ai.
 - Full presets for all 11 registers, and validator checks for preset files.
 - `tools/package.py` and a release workflow that attaches the ZIP to a GitHub Release.
 - Skill core in `SKILL.md`: invocation, presets, modes, workflow and core rules.
@@ -26,6 +27,7 @@ Version `0.1.0-alpha.2` was folded into `0.1.0-alpha.3`, because Tahap 2 did not
 
 ### Changed
 
+- Audit score bands calibrated on synthetic samples: low below 3, medium 3 to 6, high above 6.
 - `SKILL.md` may carry a pre-release version newer than the top released changelog entry.
 - Sample ids now use `<lang>-<register>-<good|pair>-NNN`.
 - CI uses `actions/checkout@v5` and runs on `ubuntu-24.04`.

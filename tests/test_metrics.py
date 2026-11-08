@@ -223,6 +223,37 @@ def test_check_locked_catches_missing_glossary_term() -> None:
     assert result["problems"][0]["kind"] == "glossary_term"
 
 
+def test_name_does_not_cross_parenthesis() -> None:
+    names = metrics.proper_names("Kami membahas Register Gratifikasi (Memo Dinas) hari ini.")
+    assert names == ["Register Gratifikasi", "Memo Dinas"]
+
+
+def test_greeting_is_not_a_name() -> None:
+    assert metrics.proper_names("**Juno:** Hi Bex, quick one.") == []
+
+
+def test_light_verb_with_pe_an_noun() -> None:
+    assert metrics.find_light_verbs("Kami melakukan pendataan aset.", "id")
+
+
+def test_light_verb_noun_exclusion() -> None:
+    assert metrics.find_light_verbs("Please provide the missing document.", "en") == []
+
+
+def test_conduct_of_review_counts() -> None:
+    assert metrics.find_light_verbs("We ordered the conduct of a review.", "en")
+
+
+def test_connector_is_not_a_triplet_item() -> None:
+    text = "Moreover, Pim Madeup and I reviewed it."
+    assert metrics.analyze(text, "en")["metrics"]["triplets"]["count"] == 0
+
+
+def test_polite_request_is_not_rhetorical() -> None:
+    text = "Could you send it today? We need it soon."
+    assert metrics.analyze(text, "en")["metrics"]["rhetorical_questions"]["count"] == 0
+
+
 def test_read_glossary(tmp_path: Path) -> None:
     path = tmp_path / "glossary.md"
     path.write_text("# T\n\n- HPS (Harga)\n- Tender\n- Pengadaan Langsung: desc\n", "utf-8")

@@ -55,10 +55,13 @@ EN_LIGHT_VERBS = (
 )
 EN_LIGHT_NOUN_SUFFIX = re.compile(r"(?:tion|sion|ment|ance|ence|sis|al)$")
 EN_LIGHT_NOUNS = set(
-    "decision assistance review evaluation assessment consideration contribution analysis".split()
+    "decision assistance review evaluation assessment consideration contribution analysis "
+    "request".split()
 )
+EN_CONDUCT_OF = re.compile(r"\bthe conduct of (?:an? |the )?[^\W\d_]+", re.IGNORECASE)
 EN_DETERMINERS = set("a an the some this that these those our your their any further".split())
 
+ID_PE_AN = re.compile(r"^pe\w{3,}an$")
 ID_NOMINAL = re.compile(r"^(?:pe\w{3,}an|ke\w{3,}an|per\w{3,}an)$")
 ID_NOT_NOMINAL = {"pekan", "kemudian", "perempuan", "kebijakan", "perusahaan"}
 EN_NOMINAL = re.compile(r"^\w{3,}(?:tion|sion|ment|ance|ence|ity)$")
@@ -90,6 +93,7 @@ CONNECTORS = {
     ),
 }
 ID_NOT_ONLY = re.compile(r"\btidak hanya\b.+?\btetapi juga\b", re.IGNORECASE)
+POLITE_REQUEST = re.compile(r"(?:could|would|can|will) (?:you|i)\b|(?:bisakah|bolehkah)\b", re.I)
 # Required by official letter formats. These are reported but never counted as connectors.
 OFFICIAL_FORMULAS = re.compile(
     r"sehubungan dengan (?:surat|nomor)|demikian (?:disampaikan|surat|nota|laporan|pengumuman)|"
@@ -111,8 +115,8 @@ INTENSIFIERS = {
 }
 TRIPLET = {
     language: re.compile(
-        r"([^\s,.;:]+(?:\s[^\s,.;:]+){0,2}),\s"
-        r"([^\s,.;:]+(?:\s[^\s,.;:]+){0,2}),?\s" + word + r"\s[^\s,.;:]+",
+        r"([^\s,.;:]+(?:\s[^\s,.;:]+)?),\s"
+        r"([^\s,.;:]+(?:\s[^\s,.;:]+)?),?\s" + word + r"\s[^\s,.;:]+",
         re.IGNORECASE,
     )
     for language, word in (("id", "dan"), ("en", "and"))
@@ -148,6 +152,7 @@ QUOTE = re.compile(r"\"[^\"\n]+\"|“[^”\n]+”")
 PASAL_LINE = re.compile(r"^\s*Pasal\s+\d+", re.IGNORECASE)
 AYAT_LINE = re.compile(r"^\s*\(\d+\)\s*\S")
 STEP_LINE = re.compile(r"^\s*\d+[.)]\s+\S")
+NOT_NAME_START = {"Hi", "Hello", "Hey", "Dear", "Halo", "Hai", "Yth"}
 CAPITALIZED = re.compile(r"^[A-Z][\w'’/-]*$")
 GLOSSARY_LINE = re.compile(r"^-\s+(.+?)(?:\s+\(|:\s|$)")
 
@@ -223,15 +228,20 @@ def find_light_verbs(text: str, language: str) -> list[str]:
             for match in re.finditer(pattern, text, re.IGNORECASE)
             if match.group(2).lower() in ID_LIGHT_NOUNS
             or ID_LIGHT_NOUN_SUFFIX.search(match.group(2).lower())
+            or ID_PE_AN.match(match.group(2).lower())
         ]
     hits = []
     for match in re.finditer(rf"\b({EN_LIGHT_VERBS})\b", text, re.IGNORECASE):
         following = re.findall(r"[^\W\d_]+", text[match.end() : match.end() + 60])[:3]
         index = 1 if following and following[0].lower() in EN_DETERMINERS else 0
         for offset, word in enumerate(following[index : index + 2]):
-            if word.lower() in EN_LIGHT_NOUNS or EN_LIGHT_NOUN_SUFFIX.search(word.lower()):
+            lower = word.lower()
+            if lower in EN_NOT_NOMINAL:
+                continue
+            if lower in EN_LIGHT_NOUNS or EN_LIGHT_NOUN_SUFFIX.search(lower):
                 hits.append(f"{match.group(0)} {' '.join(following[: index + offset + 1])}")
                 break
+    hits.extend(match.group(0) for match in EN_CONDUCT_OF.finditer(text))
     return hits
 
 
@@ -367,12 +377,19 @@ def analyze(text: str, language: str | None = None) -> dict:
     light_verbs = find_light_verbs(text, language)
     nominalizations, chains = find_nominalizations(text, language)
     connectors, stacks, formulas = find_connectors(sentences, language)
-    triplets = [m.group(0) for s in sentences for m in TRIPLET[language].finditer(s)]
+    triplets = [
+        m.group(0)
+        for s in sentences
+        for m in TRIPLET[language].finditer(s)
+        if m.group(1).lower() not in CONNECTORS[language]
+    ]
     intensifiers = find_phrases(text, INTENSIFIERS[language])
     questions = [
         sentence
         for sentence, following in zip(sentences, sentences[1:])
-        if sentence.endswith("?") and not following.endswith("?")
+        if sentence.endswith("?")
+        and not following.endswith("?")
+        and not POLITE_REQUEST.match(sentence)
     ]
     lines = [line for line in text.splitlines() if line.strip()]
     bullets = [line for line in lines if LIST_ITEM.match(line)]
@@ -467,7 +484,13 @@ def proper_names(text: str) -> list[str]:
         run: list[str] = []
         for index, raw in enumerate(tokens):
             token = raw.strip('"“”()[],;:.!?')
-            capitalized = index > 0 and bool(CAPITALIZED.match(token))
+            if raw.startswith("("):
+                if len(run) >= 2:
+                    names.append(" ".join(run))
+                run = []
+            capitalized = (
+                index > 0 and bool(CAPITALIZED.match(token)) and token not in NOT_NAME_START
+            )
             if capitalized:
                 run.append(token)
             if not capitalized or raw[-1] in ",;:.!?)":
