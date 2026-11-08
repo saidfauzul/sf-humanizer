@@ -35,7 +35,7 @@ notes: Short context for reviewers.
 | `domain` | `pengadaan`, `tata-kelola`, `sop`, `nota-dinas`, `surel` or `umum` |
 | `notes` | Anything reviewers should know |
 
-Pair files also need three sections: `## Sebelum`, `## Sesudah` and `## Catatan` in Indonesian, or `## Before`, `## After` and `## Notes` in English. List the pattern IDs that were fixed in the last section.
+Pair files also need three sections: `## Sebelum`, `## Sesudah` and `## Catatan` in Indonesian, or `## Before`, `## After` and `## Notes` in English. List the pattern IDs that were fixed in the last section, and say where each one was fixed. The before text should contain at least four distinct patterns, including at least two strong ones.
 
 ### Rules for samples
 
