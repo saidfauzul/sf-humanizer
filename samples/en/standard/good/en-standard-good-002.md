@@ -11,7 +11,7 @@ notes: Help page in FAQ style for first-time Bidders, using topic headings. Cont
 
 School meals contract: help for first-time Bidders
 
-This page answers the things Example County's Bidders ask most often about tender EC-2027-018, the contract to supply lunches to 14 primary schools from September 2027.
+This page answers the questions Example County's Bidders ask most often about tender EC-2027-018, the contract to supply lunches to 14 primary schools from September 2027.
 
 Closing date
 Your bid must reach us by 4 p.m. on 26 February 2027. The portal shuts at that minute, and we can't accept a bid that's half uploaded. Give yourself an hour.

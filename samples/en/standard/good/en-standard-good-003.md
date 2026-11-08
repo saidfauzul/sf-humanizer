@@ -15,7 +15,7 @@ From Monday 1 March 2027, anyone can read the Conflict of Interest register kept
 
 The register lists every interest that a councillor or senior officer has declared since January 2025. That covers shares, second jobs, and close family who work for a company the Council buys from. There are 312 entries so far. Home addresses and the names of children have been taken out.
 
-You can read it in two ways. It will be on the Council website, or you can ask at the front desk of Fernby Library for the printed copy. The library opens from 9 a.m. to 5 p.m., Monday to Saturday. You don't need to give your name or a reason.
+You can read it in two ways. It will be on the Council website, or you can ask at the front desk of Fernby Library for the printed copy. The library is open from 9 a.m. to 5 p.m., Monday to Saturday. You don't need to give your name or a reason.
 
 We decided to do this after an Internal Audit in June 2026 found 19 declarations that had been filed late, four of them by more than a year. Those four are marked in the register, with the date each one should have been made.
 
