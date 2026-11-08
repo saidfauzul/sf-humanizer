@@ -17,4 +17,4 @@ Parkir di kantor utara sempit, cuma muat 8 mobil. Kalau bisa naik angkot biru ju
 
 Buat Ibu dan Bapak lansia yang susah ke kantor utara, tim kami tetap bisa datang ke rumah. Telepon ke 0800-000-1234 sampai Jumat jam 15.00, sebutin nama, alamat, dan RT. Minggu lalu tim keliling cuma sanggup 9 rumah per hari, jadi mohon sabar kalau jadwalnya baru dapat minggu depan.
 
-Senin, 16 November 2026, loket selatan buka lagi seperti biasa, mulai jam 8.00. Maaf ya buat yang sudah telanjur rencana ke sana. Kalau ragu soal nomor antrean, tanya di kolom komentar, admin kami jaga sampai jam 17.00.
+Senin, 16 November 2026, loket selatan buka lagi seperti biasa, mulai jam 8.00. Maaf ya buat yang sudah telanjur berencana ke sana. Kalau ragu soal nomor antrean, tanya di kolom komentar, admin kami jaga sampai jam 17.00.

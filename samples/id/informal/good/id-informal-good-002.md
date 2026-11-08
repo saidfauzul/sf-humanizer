@@ -17,6 +17,6 @@ Sekitar 60 itu kurang kalau semua datang jam 8. Jadi yang rumahnya dekat, atau b
 
 Lapangan voli nggak ada atapnya. Helm jangan ditinggal di spion kalau nggak mau basah pas pulang, dan jas hujan bawa ke atas aja. Loker di lantai 1 masih ada 12 yang kosong, kuncinya minta ke Mbak Yuni Contoh di resepsionis, jaminannya KTP.
 
-Latihan voli hari Selasa pindah ke halaman depan sampai pekerjaan selesai. Rutenya agak aneh sih, tapi cuma sebentar.
+Latihan voli hari Selasa pindah ke halaman depan sampai pekerjaan selesai. Tempatnya agak aneh sih, tapi cuma sebentar.
 
 Kalau ada motor yang masih parkir di area belakang Senin pagi, satpam bakal telepon pemiliknya sesuai data stiker. Jadi tolong pindahin dari Minggu malam kalau motornya nginap.
