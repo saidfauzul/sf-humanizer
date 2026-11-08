@@ -24,3 +24,5 @@ jobs:
         run: pytest
       - name: Validate repository
         run: python tools/validate.py
+      - name: Check generated files
+        run: python tools/build.py --check
