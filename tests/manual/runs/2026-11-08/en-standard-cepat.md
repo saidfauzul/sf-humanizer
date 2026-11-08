@@ -1,12 +1,10 @@
-**Teks akhir**
-
 How to Register as a Small Supplier with the City of Larkspur Fictional
 
-Registration with the City of Larkspur Fictional opens on 4 January 2027 under Public Notice 7702/PUB/2026 and closes on 26 February 2027. This guide explains how to apply.
+Registration with the City of Larkspur Fictional opens on 4 January 2027 under Public Notice 7702/PUB/2026 and closes on 26 February 2027. This guide explains the process for small businesses that have not applied for public contracts before.
 
 Businesses that register through the Larkspur supplier portal win three times as many public contracts as businesses that do not, and registration is the single most effective step a small firm can take to grow.
 
-Who can apply? Any business with fewer than 50 employees can apply. The registration fee is $40, and you must pay it before the City evaluates your application.
+Who can apply? Any business with fewer than 50 employees can apply. The registration fee is $40, and you must pay it before the City will evaluate your application.
 
 To apply, follow these steps:
 
@@ -21,12 +19,12 @@ Registration is valid for 2 years. It is not a contract. Once you are registered
 
 The process is straightforward. To begin, visit https://larkspur.example/suppliers, or email suppliers@larkspur.example if you have a question.
 
-**Catatan perubahan**
+Notes on what changed:
 
-- Pembuka generik dan kosakata khas AI dihapus: "In today's evolving procurement landscape", "delve", "robust and seamless pathway to opportunity", "truly".
-- Rangkaian transisi (Moreover, Furthermore, Additionally), pola "not only ... but also", dan "it isn't X, it's Y" diganti kalimat langsung. Verba ringan diganti verba sebenarnya: "make a payment of" menjadi "pay", "conduct an evaluation of" menjadi "evaluates", "carry out a review of" menjadi "review".
-- Semua angka, tanggal, nomor pengumuman, nama, URL, alamat email, dan empat langkah bernomor dipertahankan apa adanya.
+- Removed the generic opener and the stock vocabulary (navigating, landscape, delve, robust, seamless), and cut "It is worth noting" and "truly".
+- Replaced light verbs with plain ones (pay, evaluate, review, email) and dropped the stacked transitions and the "not only ... but also" and "isn't X, it's Y" constructions.
+- Kept all dates, amounts, deadlines, the four numbered steps, the question heading, the URL and the email address as written.
 
-**Perlu konfirmasi**
+Confirmation points:
 
-- Paragraf kedua ("win three times as many public contracts" dan "the single most effective step a small firm can take to grow") adalah klaim tanpa sumber atau data pendukung. Saya biarkan seperti aslinya. Mohon cek apakah ada datanya, atau pertimbangkan untuk melunakkan atau menghapus klaim ini.
+- The claim that registered businesses "win three times as many public contracts" and that registration is "the single most effective step a small firm can take to grow" has no source in the text. Please check whether the City has data to support it, or soften or remove it.
