@@ -83,6 +83,122 @@ def test_missing_sample_readme(repo: Path) -> None:
     assert any("samples/id/email/README.md" in e for e in validate.validate(repo))
 
 
+def write_reference(repo: Path, name: str, text: str) -> Path:
+    path = repo / validate.REFERENCES_PATH / name
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+    return path
+
+
+@pytest.mark.parametrize(
+    ("version", "released", "has_unreleased", "allowed"),
+    [
+        ("0.0.1", "0.0.1", False, True),
+        ("0.1.0-alpha.1", "0.0.1", True, True),
+        ("0.1.0-alpha.1", "0.0.1", False, False),
+        ("0.0.1-alpha.1", "0.0.1", True, False),
+        ("0.0.2", "0.0.1", True, False),
+        ("banana-1", "0.0.1", True, False),
+    ],
+)
+def test_version_rule(version: str, released: str, has_unreleased: bool, allowed: bool) -> None:
+    assert validate.version_allowed(version, released, has_unreleased) is allowed
+
+
+def test_reference_at_size_limit_fails(repo: Path) -> None:
+    write_reference(repo, "big.md", "x" * validate.MAX_REFERENCE_BYTES)
+    assert any("must be under" in e for e in validate.validate(repo))
+
+
+def test_nested_reference_is_size_checked(repo: Path) -> None:
+    write_reference(repo, "presets/big.md", "x" * validate.MAX_REFERENCE_BYTES)
+    assert any("big.md" in e for e in validate.validate(repo))
+
+
+@pytest.mark.parametrize("name", ["id formal", "EN chat", "id, email", "en-semiformal"])
+def test_preset_name_in_rule_fails(repo: Path, name: str) -> None:
+    write_reference(repo, "patterns-id.md", f"# Title\n\nFor {name} do this.\n")
+    assert any("names a preset" in e for e in validate.validate(repo))
+
+
+def test_invalid_language_register_pair_is_allowed(repo: Path) -> None:
+    write_reference(repo, "patterns-id.md", "# Title\n\nThe id chat combination.\n")
+    assert validate.validate(repo) == []
+
+
+def test_preset_name_allowed_in_preset_section(repo: Path) -> None:
+    text = "# T\n\n## Presets\n\nid formal\n\n### Sub\n\nen chat\n\n## Other\n\nPlain.\n"
+    write_reference(repo, "patterns-en.md", text)
+    assert validate.validate(repo) == []
+
+
+def test_preset_exemption_ends_with_section(repo: Path) -> None:
+    text = "# T\n\n## Presets\n\nid formal\n\n## Rules\n\nen chat\n"
+    write_reference(repo, "patterns-en.md", text)
+    errors = validate.validate(repo)
+    assert len(errors) == 1 and ":9 " in errors[0]
+
+
+def test_preset_check_ignores_other_references(repo: Path) -> None:
+    write_reference(repo, "locking.md", "Example for id formal.\n")
+    assert validate.validate(repo) == []
+
+
+def test_broken_link_fails(repo: Path) -> None:
+    write_reference(repo, "a.md", "See [b](missing.md).\n")
+    assert any("broken link missing.md" in e for e in validate.validate(repo))
+
+
+def test_valid_links_pass(repo: Path) -> None:
+    write_reference(repo, "b.md", "# B\n")
+    text = "[b](b.md) [anchor](b.md#x) [top](#t) [web](https://example.org/nope.md)\n"
+    write_reference(repo, "a.md", text)
+    assert validate.validate(repo) == []
+
+
+def test_links_in_code_are_ignored(repo: Path) -> None:
+    write_reference(repo, "a.md", "`[x](no.md)`\n\n```text\n[y](no.md)\n```\n")
+    assert validate.validate(repo) == []
+
+
+@pytest.mark.parametrize(
+    "intro", ["Ada tiga aturan:", "Three things:", "**Tiga hal:**", "Follow these three steps:"]
+)
+def test_count_match_passes(repo: Path, intro: str) -> None:
+    write_reference(repo, "a.md", f"{intro}\n\n- a\n- b\n- c\n")
+    assert validate.validate(repo) == []
+
+
+@pytest.mark.parametrize("intro", ["Ada lima hal:", "Five things:", "Sepuluh butir:"])
+def test_count_mismatch_fails(repo: Path, intro: str) -> None:
+    write_reference(repo, "a.md", f"{intro}\n\n- a\n- b\n- c\n")
+    assert any("but the list has 3" in e for e in validate.validate(repo))
+
+
+def test_count_ignores_nested_items(repo: Path) -> None:
+    write_reference(repo, "a.md", "Two things:\n\n1. a\n   - x\n   - y\n\n   more\n2. b\n")
+    assert validate.validate(repo) == []
+
+
+def test_count_stops_at_following_paragraph(repo: Path) -> None:
+    write_reference(repo, "a.md", "Two things:\n\n- a\n- b\n\nAfter.\n\n- c\n")
+    assert validate.validate(repo) == []
+
+
+@pytest.mark.parametrize(
+    "intro",
+    ["Choose one of these:", "Pilih salah satu berikut:", "Two or three items:", "Three things"],
+)
+def test_non_counts_are_ignored(repo: Path, intro: str) -> None:
+    write_reference(repo, "a.md", f"{intro}\n\n- a\n- b\n- c\n- d\n")
+    assert validate.validate(repo) == []
+
+
+def test_count_without_list_is_ignored(repo: Path) -> None:
+    write_reference(repo, "a.md", "Three things:\n\nJust prose.\n")
+    assert validate.validate(repo) == []
+
+
 def test_main_exit_codes(repo: Path) -> None:
     assert validate.main(["--root", str(repo)]) == 0
     (repo / validate.SKILL_PATH).unlink()

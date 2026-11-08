@@ -63,6 +63,6 @@ pytest
 python tools/validate.py
 ```
 
-Update [CHANGELOG.md](CHANGELOG.md) for user-visible changes. When you release a version, keep the `version` in `SKILL.md` in step with the top released entry in the changelog.
+Update [CHANGELOG.md](CHANGELOG.md) for user-visible changes. The `version` in `SKILL.md` must match the top released entry in the changelog, or be a pre-release (such as `0.1.0-alpha.1`) of a newer version while the changelog has an `Unreleased` section.
 
 By contributing, you agree to follow the [Code of Conduct](CODE_OF_CONDUCT.md).

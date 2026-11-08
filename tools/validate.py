@@ -1,5 +1,20 @@
 #!/usr/bin/env python3
-"""Validate the repository structure. Standard library only."""
+"""Validate the repository structure. Standard library only.
+
+Version rule: SKILL.md either matches the newest released CHANGELOG entry, or is a
+pre-release (such as 0.1.0-alpha.1) of a version newer than that entry while the
+changelog has an Unreleased section. Pre-releases do not need their own entry.
+
+Preset-name heuristic: generic rules must not name a preset. In SKILL.md and
+patterns-*.md, a line must not contain a language followed by one of its registers
+("id formal", "en, chat", "en-email"). Sections whose heading starts with "Preset"
+are exempt, because that is where presets are defined.
+
+Count heuristic: a non-list line ending in a colon that contains a number word from
+one to ten (English or Indonesian) followed by another word, and that is immediately
+followed by a list, must introduce exactly that many top-level items. Phrases such as
+"one of", "salah satu" and "two or three" are not treated as counts.
+"""
 
 from __future__ import annotations
 
@@ -9,18 +24,56 @@ import sys
 from pathlib import Path
 
 MAX_SKILL_BYTES = 20 * 1024
+MAX_REFERENCE_BYTES = 15 * 1024
 SKILL_PATH = Path("skill/sf-humanizer/SKILL.md")
+REFERENCES_PATH = Path("skill/sf-humanizer/references")
 CHANGELOG_PATH = Path("CHANGELOG.md")
+REGISTERS = {
+    "id": ("formal", "semiformal", "informal", "standar", "email"),
+    "en": ("formal", "semiformal", "informal", "standard", "email", "chat"),
+}
 SAMPLE_FOLDERS = tuple(
-    f"id/{register}" for register in ("formal", "semiformal", "informal", "standar", "email")
-) + tuple(
-    f"en/{register}"
-    for register in ("formal", "semiformal", "informal", "standard", "email", "chat")
+    f"{language}/{register}" for language, registers in REGISTERS.items() for register in registers
 )
+NUMBER_WORDS = {
+    **dict(
+        zip(
+            "one two three four five six seven eight nine ten".split(),
+            range(1, 11),
+        )
+    ),
+    **dict(
+        zip(
+            "satu dua tiga empat lima enam tujuh delapan sembilan sepuluh".split(),
+            range(1, 11),
+        )
+    ),
+}
 
 FRONTMATTER_RE = re.compile(r"\A---\r?\n(.*?)\r?\n---\s*(?:\r?\n|\Z)", re.DOTALL)
 VERSION_RE = re.compile(r"^version:\s*[\"']?([^\s\"']+)[\"']?\s*$", re.MULTILINE)
 RELEASE_RE = re.compile(r"^## \[(?!Unreleased\])([^\]]+)\]", re.MULTILINE | re.IGNORECASE)
+UNRELEASED_RE = re.compile(r"^## \[Unreleased\]", re.MULTILINE | re.IGNORECASE)
+CORE_VERSION_RE = re.compile(r"^(\d+)\.(\d+)\.(\d+)(-.+)?$")
+FENCE_RE = re.compile(r"^\s*(```|~~~)")
+HEADING_RE = re.compile(r"^(#{1,6})\s+(.*)$")
+PRESET_HEADING_RE = re.compile(r"^presets?\b", re.IGNORECASE)
+PRESET_NAME_RE = re.compile(
+    "|".join(
+        rf"\b{language}[\s,-]+(?:{'|'.join(registers)})\b"
+        for language, registers in REGISTERS.items()
+    ),
+    re.IGNORECASE,
+)
+INLINE_CODE_RE = re.compile(r"`[^`]*`")
+LINK_RE = re.compile(r"(?<!!)\[[^\]]*\]\(([^)\s]+)[^)]*\)")
+URL_SCHEME_RE = re.compile(r"^[a-z][a-z0-9+.-]*:", re.IGNORECASE)
+LIST_ITEM_RE = re.compile(r"^(\s*)(?:[-*+]|\d+[.)])\s+")
+COUNT_RE = re.compile(
+    r"(?<![\w-])(?<!salah )(?<!or )(?<!atau )(" + "|".join(NUMBER_WORDS) + r")\s+"
+    r"(?!(?:of|dari|or|atau|per|to|sampai|hingga|more|lebih)\b)[^\W\d_]",
+    re.IGNORECASE,
+)
 
 
 def frontmatter_version(text: str) -> str | None:
@@ -38,8 +91,19 @@ def top_released_version(text: str) -> str | None:
     return release.group(1) if release else None
 
 
+def version_allowed(version: str, released: str, has_unreleased: bool) -> bool:
+    """Apply the version rule described in the module docstring."""
+    if version == released:
+        return True
+    candidate = CORE_VERSION_RE.match(version)
+    base = CORE_VERSION_RE.match(released)
+    if candidate is None or base is None or candidate.group(4) is None or not has_unreleased:
+        return False
+    return tuple(map(int, candidate.groups()[:3])) > tuple(map(int, base.groups()[:3]))
+
+
 def check_skill(root: Path) -> list[str]:
-    """Check SKILL.md size and that its version matches the changelog."""
+    """Check SKILL.md size and that its version agrees with the changelog."""
     skill = root / SKILL_PATH
     if not skill.is_file():
         return [f"{SKILL_PATH} is missing"]
@@ -58,10 +122,13 @@ def check_skill(root: Path) -> list[str]:
         errors.append(f"{CHANGELOG_PATH} is missing")
         return errors
 
-    released = top_released_version(changelog.read_text(encoding="utf-8"))
+    text = changelog.read_text(encoding="utf-8")
+    released = top_released_version(text)
     if released is None:
         errors.append(f"{CHANGELOG_PATH} has no released version")
-    elif version is not None and version != released:
+    elif version is not None and not version_allowed(
+        version, released, UNRELEASED_RE.search(text) is not None
+    ):
         errors.append(
             f"{SKILL_PATH} version {version} does not match {CHANGELOG_PATH} version {released}"
         )
@@ -80,13 +147,131 @@ def check_samples(root: Path) -> list[str]:
     return errors
 
 
+def reference_files(root: Path) -> list[Path]:
+    """Return the Markdown files under the skill's references directory."""
+    return sorted((root / REFERENCES_PATH).rglob("*.md"))
+
+
+def without_fences(text: str) -> list[str]:
+    """Return the lines of text, with fenced code blocks blanked out."""
+    lines = []
+    in_fence = False
+    for line in text.splitlines():
+        if FENCE_RE.match(line):
+            in_fence = not in_fence
+            lines.append("")
+        else:
+            lines.append("" if in_fence else line)
+    return lines
+
+
+def check_reference_sizes(root: Path) -> list[str]:
+    """Check that every reference file is under the size limit."""
+    errors = []
+    for path in reference_files(root):
+        size = path.stat().st_size
+        if size >= MAX_REFERENCE_BYTES:
+            relative = path.relative_to(root)
+            errors.append(f"{relative} is {size} bytes; it must be under {MAX_REFERENCE_BYTES}")
+    return errors
+
+
+def check_preset_names(root: Path) -> list[str]:
+    """Check that generic rules do not name a preset."""
+    errors = []
+    paths = [root / SKILL_PATH, *sorted((root / REFERENCES_PATH).glob("patterns-*.md"))]
+    for path in paths:
+        if not path.is_file():
+            continue
+        exempt_level = None
+        for number, line in enumerate(without_fences(path.read_text(encoding="utf-8")), start=1):
+            heading = HEADING_RE.match(line)
+            if heading:
+                level = len(heading.group(1))
+                if exempt_level is not None and level <= exempt_level:
+                    exempt_level = None
+                if exempt_level is None and PRESET_HEADING_RE.match(heading.group(2)):
+                    exempt_level = level
+            if exempt_level is None and PRESET_NAME_RE.search(line):
+                errors.append(f"{path.relative_to(root)}:{number} names a preset in a generic rule")
+    return errors
+
+
+def check_links(root: Path) -> list[str]:
+    """Check that relative links in the skill's Markdown files resolve."""
+    errors = []
+    skill = root / SKILL_PATH
+    paths = ([skill] if skill.is_file() else []) + reference_files(root)
+    for path in paths:
+        for number, line in enumerate(without_fences(path.read_text(encoding="utf-8")), start=1):
+            for target in LINK_RE.findall(INLINE_CODE_RE.sub("", line)):
+                if URL_SCHEME_RE.match(target) or target.startswith("#"):
+                    continue
+                if not (path.parent / target.split("#")[0]).exists():
+                    errors.append(f"{path.relative_to(root)}:{number} has broken link {target}")
+    return errors
+
+
+def count_list_items(lines: list[str], start: int) -> int:
+    """Count top-level list items from start; return 0 if no list begins there."""
+    count = 0
+    indent = None
+    for line in lines[start:]:
+        if not line.strip():
+            continue
+        item = LIST_ITEM_RE.match(line)
+        if item:
+            width = len(item.group(1))
+            if indent is None:
+                indent = width
+            if width < indent:
+                break
+            if width == indent:
+                count += 1
+        elif indent is None or len(line) - len(line.lstrip()) <= indent:
+            break
+    return count
+
+
+def check_counts(root: Path) -> list[str]:
+    """Check that stated counts match the lists they introduce."""
+    errors = []
+    skill = root / SKILL_PATH
+    paths = ([skill] if skill.is_file() else []) + reference_files(root)
+    for path in paths:
+        lines = without_fences(path.read_text(encoding="utf-8"))
+        for index, line in enumerate(lines):
+            if LIST_ITEM_RE.match(line) or not line.rstrip().rstrip("*_").endswith(":"):
+                continue
+            stated = COUNT_RE.search(line)
+            if stated is None:
+                continue
+            found = count_list_items(lines, index + 1)
+            expected = NUMBER_WORDS[stated.group(1).lower()]
+            if found and found != expected:
+                errors.append(
+                    f"{path.relative_to(root)}:{index + 1} states {expected} items "
+                    f"but the list has {found}"
+                )
+    return errors
+
+
 def validate(root: Path) -> list[str]:
     """Run all checks and return the error messages."""
-    return check_skill(root) + check_samples(root)
+    return (
+        check_skill(root)
+        + check_samples(root)
+        + check_reference_sizes(root)
+        + check_preset_names(root)
+        + check_links(root)
+        + check_counts(root)
+    )
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(
+        description="Validate the repository structure.",
+    )
     parser.add_argument(
         "--root",
         type=Path,
