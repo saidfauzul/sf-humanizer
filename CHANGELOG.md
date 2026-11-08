@@ -13,6 +13,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Locking rules and Indonesian and English glossaries.
 - Validator checks for reference size, preset names in generic rules, internal links and stated counts.
 - Wave 1 corpus: 24 synthetic samples for three presets, pending owner review.
+- Wave 2 corpus: 64 synthetic samples for the remaining eight presets, pending owner review.
+- Quality review of all 88 samples, recorded in `docs/review-samples-2026-11-08.md`.
 - `docs/sources.md`, `docs/synthetic-prompts.md` and `docs/PLAN.md`.
 - Sample validation for frontmatter, ids and pair sections.
 
