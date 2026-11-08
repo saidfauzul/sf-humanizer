@@ -44,6 +44,8 @@ An unknown combination is not an error. Say that the preset does not exist and u
 
 ## Modes
 
+Begin the response with the first item of the mode. Add no preamble, status line, recap of checks, or closing summary.
+
 `cepat` shows only:
 
 - the final text;
@@ -53,7 +55,7 @@ An unknown combination is not an error. Say that the preset does not exist and u
 `lengkap` shows, in this order:
 
 1. Findings, with pattern IDs.
-2. Draft.
+2. Draft: the complete draft text, written out in full, not a description or a reference to the final text.
 3. Audit of the draft.
 4. Final text.
 5. Confirmation points.
@@ -61,7 +63,7 @@ An unknown combination is not an error. Say that the preset does not exist and u
 
 `audit` shows findings and a score only, with no rewrite. Use it for text already edited by another model.
 
-Compute the audit score as pattern density: (3 x strong findings + weak findings that count) x 100 / word count. Report the number and its band: low below 3, medium from 3 to 8, high above 8. A weak finding counts only under the co-occurrence rule in step 3 of the workflow.
+Compute the audit score as pattern density: (3 x strong findings + weak findings that count) x 100 / word count. Report the number and its band: low below 3, medium from 3 to 6, high above 6. Make the totals match the findings listed. These bands were calibrated on synthetic samples. A weak finding counts only under the co-occurrence rule in step 3 of the workflow.
 
 ## Files to load
 
@@ -93,6 +95,7 @@ Steps 3 to 6 are internal. `cepat` mode does not show them.
 - Rewrite, never trim. Keep the same information in the same order of ideas, unless clarity demands a change.
 - Leave numbers, names, dates, references, quotations and locked terms unchanged.
 - Keep the author's claims. Never add facts, examples, sources or opinions.
+- Keep the strength of every obligation and claim. Do not turn "perlu" or "sebaiknya" into "wajib", or "should" into "must", and do not drop a hedge.
 - Report substantive problems as confirmation points and never fix them silently. These include suspicious numbers, possibly wrong article references, unsupported claims, and a stated count that does not match the items listed.
 - Respect the register of the preset. A pattern that is wrong in one register may be right in another, so the preset file decides.
 - Vary sentence length the way a person does when thinking through a point. Do not alternate long and short mechanically.
@@ -115,6 +118,8 @@ A preset file's `metrics` block gives the typical range of its samples. Treat it
 
 ## Confirmation points
 
-A confirmation point names the passage, says what looks wrong, and asks the author to check it. Leave the passage as written in the final text. Write confirmation points in the language the user is writing in.
+A confirmation point names the passage, says what looks wrong, and asks the author to check it. Leave the passage as written in the final text. Do not raise a point only because a date is later than today.
+
+Write notes and confirmation points in the language the user is writing in. When the message holds only the invocation and the text, use the language of the text.
 
 Do not include the internal lock markers in any output.
