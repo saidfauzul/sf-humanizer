@@ -12,6 +12,7 @@ Version `0.1.0-alpha.2` was folded into `0.1.0-alpha.3`, because Tahap 2 did not
 
 - `scripts/metrics.py`: sentence, pattern and count metrics, `--compare` and `--check-locked`.
 - `tools/build.py`: generated examples and preset metric profiles, with a `--check` mode used by CI.
+- Full presets for all 11 registers, and validator checks for preset files.
 - `tools/package.py` and a release workflow that attaches the ZIP to a GitHub Release.
 - Skill core in `SKILL.md`: invocation, presets, modes, workflow and core rules.
 - Indonesian and English pattern catalogs.
