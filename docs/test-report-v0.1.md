@@ -30,7 +30,7 @@ Kriteria: (a) skill dan preset diterapkan, (b) bentuk sesuai mode, (c) `--check-
 | en email | audit | pertama | P | F | NA | NA | P | P | P | Ada kalimat pembuka; perbaikan belum diuji ulang |
 | en chat | audit | pertama | P | F | NA | NA | P | P | NA | Ada kalimat pembuka; perbaikan belum diuji ulang |
 
-Jumlah lulus: a 17/17, b 15/17, c 14/14, d 14/14, e 17/17, f 17/17, g 6/6. Pada putaran pertama seluruh 33 kombinasi, kriteria b gagal pada 18 kombinasi dan e gagal pada 3 kombinasi.
+Jumlah lulus: a 17/17, b 15/17, c 14/14, d 14/14, e 17/17, f 17/17, g 6/6. Pada putaran pertama seluruh 33 kombinasi, kriteria b gagal pada 19 kombinasi dan e gagal pada 3 kombinasi.
 
 ## Kalibrasi skor audit
 
@@ -61,5 +61,5 @@ Batas lama (3 dan 8) hanya menempatkan 19 teks "sebelum" pada tinggi. Skor yang 
 
 - Korpus sintetis, dan katalog belum tervalidasi pada teks AI asli ([#12](https://github.com/saidfauzul/sf-humanizer/issues/12)).
 - Unggahan dan uji di claude.ai belum dilakukan.
-- Empat kombinasi dengan temuan pada putaran pertama (`id email cepat`, `en formal cepat`, `en standard cepat`, dan dua `audit` berbahasa Inggris) belum dijalankan ulang setelah perbaikan.
+- Lima kombinasi dengan temuan pada putaran pertama (`id email cepat`, `en formal cepat`, `en standard cepat`, dan dua `audit` berbahasa Inggris) belum dijalankan ulang setelah perbaikan.
 - Masukan uji ditulis oleh model dengan pola yang sengaja dimasukkan, jadi keberhasilan penurunan pola tidak otomatis berlaku untuk teks nyata.
