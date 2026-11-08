@@ -1,7 +1,7 @@
 ---
 name: sf-humanizer
 description: Rewrites AI-sounding text so it reads as human-written, with facts unchanged. Works in Indonesian and English, with presets by language and register. Use when the user says "sf-humanizer", "humanize", "manusiakan", or "tulis ulang agar natural".
-version: 0.1.0-alpha.1
+version: 0.1.0-alpha.3
 ---
 
 # sf-humanizer
@@ -38,7 +38,7 @@ If the request gives no text, ask for it. Mixed-language text uses the language 
 | en | email | `references/presets/en-email.md` | Work email |
 | en | chat | `references/presets/en-chat.md` | Instant messages: short, direct lines |
 
-If the preset file is missing, apply the general rules with the register description in this table.
+If the preset file is missing or has `status: stub`, apply the general rules with the register description in this table.
 
 An unknown combination is not an error. Say that the preset does not exist and use the nearest one; for example, id chat becomes id informal.
 
@@ -100,6 +100,18 @@ Steps 3 to 6 are internal. `cepat` mode does not show them.
 - Do not swap in a new tic for the one removed. A text in which every sentence has been made short and punchy still reads as machine-made.
 - If the text already reads as human, say so and change little or nothing.
 - Keep generic rules free of specific preset names. Behavior that belongs to one register goes in its preset file.
+
+## Metrics
+
+Use `scripts/metrics.py` only where code can be run. If it cannot, estimate by reading and say that the figures are estimates.
+
+- In `lengkap` mode, run `python3 scripts/metrics.py --compare ORIGINAL FINAL --lang <id|en>` and summarize the changes that matter.
+- In `audit` mode, run `python3 scripts/metrics.py TEXT --lang <id|en> --json` and use its hits as candidates for findings. Judge each hit against the do-not-flag list before counting it.
+- After rewriting in `lengkap` mode, run `python3 scripts/metrics.py --check-locked ORIGINAL FINAL --lang <id|en>`, adding `--terms "A,B"` for terms given with `kunci:`.
+
+Exit code 1 from `--check-locked` lists segments as missing or altered. Restore each listed segment. If one looks like a false alarm, keep the original wording and mention it as a confirmation point.
+
+A preset file's `metrics` block gives the typical range of its samples. Treat it as context, and do not rewrite a text only to move a number.
 
 ## Confirmation points
 
