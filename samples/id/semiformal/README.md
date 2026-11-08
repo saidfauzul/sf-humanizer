@@ -2,7 +2,7 @@
 
 > Draf definisi register.
 
-Tulisan profesional yang tetap luwes: memo internal, laporan singkat, artikel kerja, paparan. Tata bahasa baku, tetapi kalimat lebih ringkas dan boleh menyapa pembaca.
+Tulisan internal antarrekan kerja yang tetap luwes: memo internal, notulen, laporan singkat tim, pengumuman internal, paparan. Tata bahasa baku, tetapi kalimat lebih ringkas dan boleh menyapa pembaca.
 
 Ciri register:
 
