@@ -6,7 +6,7 @@ source_url:
 license: synthetic
 synthetic: true
 domain: surel
-notes: ID-01, ID-06, ID-14. Hari, tanggal, waktu, dan tempat terkunci.
+notes: ID-01, ID-06, ID-02, dan ID-14 pada paragraf setelah rincian rapat, ID-06 lagi pada dua paragraf berikutnya. Hari, tanggal, waktu, dan tempat terkunci.
 ---
 
 ## Sebelum
@@ -23,11 +23,11 @@ Hari/Tanggal : Selasa, 17 November 2026
 Waktu : 09.00 WIB
 Tempat : Ruang Rapat Contoh 2
 
-Rapat ini bertujuan untuk membahas dan menyepakati Spesifikasi Teknis sebagai bagian dari dokumen pemilihan. Spesifikasi yang disepakati nantinya akan menjadi acuan bagi peserta dalam menyusun penawaran, sehingga ketelitian dalam pembahasan sangat kami harapkan. Mengingat pentingnya agenda tersebut, kami mohon kehadiran seluruh anggota tepat waktu agar pembahasan dapat dimulai sesuai jadwal.
+Rapat ini memiliki tujuan untuk melakukan pembahasan dan penyepakatan Spesifikasi Teknis sebagai bagian dari dokumen pemilihan. Penting untuk dicatat bahwa peserta akan menyusun penawaran berdasarkan spesifikasi yang disepakati, sehingga ketelitian sangat kami harapkan dan kehadiran seluruh anggota tepat waktu sangat kami mohon.
 
-Setiap anggota diminta untuk membawa catatan reviu masing-masing terhadap draf Spesifikasi Teknis yang telah dibagikan sebelumnya. Catatan tersebut akan menjadi bahan diskusi utama dalam rapat dan membantu kita menyelesaikan pembahasan dalam satu sesi, tanpa perlu penundaan untuk pembahasan ulang.
+Mohon setiap anggota membawa catatan reviu masing-masing atas draf Spesifikasi Teknis yang telah dibagikan. Catatan itu merupakan bahan utama diskusi dan membantu kita melakukan penyelesaian pembahasan dalam satu sesi, tanpa perlu pembahasan ulang.
 
-Apabila berhalangan hadir, mohon segera memberikan konfirmasi kepada Sekretariat Pokja Pemilihan agar dapat dipersiapkan penggantinya dan catatan reviu Bapak/Ibu tetap dapat dibahas dalam rapat. Kami juga akan membagikan notulen rapat setelah pertemuan selesai.
+Bila berhalangan hadir, mohon segera memberikan konfirmasi kepada Sekretariat Pokja Pemilihan agar penggantinya dapat disiapkan dan catatan reviu Bapak/Ibu tetap dibahas dalam rapat. Kami juga akan membagikan notulen setelah rapat selesai.
 
 Demikian undangan ini kami sampaikan. Atas perhatian dan kehadiran Bapak/Ibu, kami ucapkan terima kasih.
 
@@ -49,7 +49,7 @@ Hari/Tanggal : Selasa, 17 November 2026
 Waktu : 09.00 WIB
 Tempat : Ruang Rapat Contoh 2
 
-Dalam rapat ini kita akan membahas dan menyepakati Spesifikasi Teknis sebagai bagian dari dokumen pemilihan. Peserta akan menyusun penawaran berdasarkan spesifikasi yang disepakati, jadi kami mohon pembahasannya teliti dan seluruh anggota hadir tepat waktu.
+Dalam rapat ini kita akan membahas dan menyepakati Spesifikasi Teknis sebagai bagian dari dokumen pemilihan. Peserta akan menyusun penawaran berdasarkan spesifikasi yang disepakati, jadi kami mohon seluruh anggota hadir tepat waktu dan membahasnya dengan teliti.
 
 Mohon setiap anggota membawa catatan reviu masing-masing atas draf Spesifikasi Teknis yang telah dibagikan. Catatan itu menjadi bahan utama diskusi dan membantu kita menyelesaikan pembahasan dalam satu sesi, tanpa perlu pembahasan ulang.
 
@@ -63,4 +63,4 @@ Sekretariat Pokja Pemilihan
 
 ## Catatan
 
-ID-01, ID-06, ID-14. Hari, tanggal, waktu, dan tempat terkunci.
+ID-01, ID-06, ID-02, dan ID-14 pada paragraf setelah rincian rapat, ID-06 lagi pada dua paragraf berikutnya. Hari, tanggal, waktu, dan tempat terkunci.

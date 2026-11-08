@@ -12,6 +12,16 @@ Teks "sesudah" ditulis ulang oleh Claude mengikuti katalog di `skill/sf-humanize
 
 Teks "sesudah" dan teks `good/` pada gelombang ini juga buatan model, bukan tulisan manusia. Karena itu semuanya ditandai `synthetic: true` dan `license: synthetic`, sesuai CONTRIBUTING.md. Setelah pemilik repo meninjau dan menyuntingnya sendiri, statusnya dapat diubah.
 
+## Teks "sebelum" yang dibuat ulang
+
+Setelah tinjauan kualitas, teks "sebelum" yang memuat kurang dari 4 pola katalog dibuat ulang oleh Claude. Teks barunya bukan hasil prompt per sampel di bawah, melainkan disusun dari teks "sesudah" dengan templat berikut. Prompt di bawah tetap dicatat sebagai asal skenario dan fakta.
+
+```text
+Rewrite the following text in the voice of a generic AI assistant. Use at least four of these catalog patterns, including at least two marked strong: <list of ids>. Keep every fact, number, date, name, reference and quotation exactly. Add no facts. Match the original length. Keep the document type. Text: <after text>
+```
+
+Teks hasil templat ini memuat pola yang sengaja disisipkan, jadi sebagian terasa lebih kaku atau dibuat-buat dibanding keluaran model yang sebenarnya.
+
 ## Prompt
 
 ### id-formal-pair-001

@@ -13,7 +13,7 @@ Penanganan Sanggah
 
 Sanggah diterima oleh Pokja Pemilihan selama masa sanggah melalui sistem pengadaan. Sanggah yang datang di luar masa itu, atau melalui surat fisik, tidak diproses, tetapi Sekretariat tetap mencatatnya sebagai bahan evaluasi tahunan.
 
-Begitu sanggah masuk, Ketua Pokja Pemilihan menunjuk dua anggota yang tidak mengevaluasi penawaran penyanggah. Keduanya membaca alasan sanggah, mencocokkannya dengan Berita Acara hasil evaluasi, dan menyusun rancangan jawaban paling lama 3 hari kerja. Jika alasan sanggah menyangkut Spesifikasi Teknis, mereka meminta pendapat tertulis dari unit pengguna sebelum menjawab.
+Setelah sanggah masuk, Ketua Pokja Pemilihan menunjuk dua anggota yang tidak mengevaluasi penawaran penyanggah. Keduanya membaca alasan sanggah, mencocokkannya dengan Berita Acara hasil evaluasi, dan menyusun rancangan jawaban paling lama 3 hari kerja. Jika alasan sanggah menyangkut Spesifikasi Teknis, mereka meminta pendapat tertulis dari unit pengguna sebelum menjawab.
 
 Rancangan jawaban dibahas dalam rapat Pokja Pemilihan. Keputusan diambil oleh seluruh anggota dan dicatat dalam Berita Acara, termasuk pendapat anggota yang berbeda. Sanggah yang dinyatakan benar menyebabkan evaluasi diulang pada bagian yang disanggah, bukan seluruh proses, kecuali Ketua Pokja Pemilihan menilai kesalahannya memengaruhi seluruh peringkat.
 
