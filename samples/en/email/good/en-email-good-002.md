@@ -11,7 +11,7 @@ notes: Email to a manager. Content is fictional.
 
 Subject: Splitting the 2027 stationery contract
 
-Hi Sara,
+Hi Ines,
 
 I'd like to split next year's stationery purchase into two contracts: paper and toner in one, everything else in the other. Can you let me know what you think by Thursday? The plan is due to Finance on Friday.
 
@@ -23,4 +23,4 @@ If you're happy with this, I'll update the plan tomorrow morning. If you'd rathe
 
 Thanks,
 
-Ben
+Marco
