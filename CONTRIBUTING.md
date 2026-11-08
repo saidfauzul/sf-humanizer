@@ -37,6 +37,8 @@ notes: Short context for reviewers.
 
 Pair files also need three sections: `## Sebelum`, `## Sesudah` and `## Catatan` in Indonesian, or `## Before`, `## After` and `## Notes` in English. List the pattern IDs that were fixed in the last section, and say where each one was fixed. The before text should contain at least four distinct patterns, including at least two strong ones.
 
+After adding or changing samples, run `python tools/build.py` and commit the regenerated files in `skill/sf-humanizer/references/examples/` and `references/presets/`. CI runs `python tools/build.py --check` and fails if they are out of date.
+
 ### Rules for samples
 
 - Only submit text whose license is one of the values above, and that you are allowed to share.
@@ -63,6 +65,7 @@ pip install ruff pytest
 ruff check .
 pytest
 python tools/validate.py
+python tools/build.py --check
 ```
 
 Update [CHANGELOG.md](CHANGELOG.md) for user-visible changes. The `version` in `SKILL.md` must match the top released entry in the changelog, or be a pre-release (such as `0.1.0-alpha.1`) of a newer version while the changelog has an `Unreleased` section.
