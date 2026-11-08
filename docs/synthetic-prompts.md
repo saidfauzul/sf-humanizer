@@ -22,6 +22,8 @@ Rewrite the following text in the voice of a generic AI assistant. Use at least 
 
 Teks hasil templat ini memuat pola yang sengaja disisipkan, jadi sebagian terasa lebih kaku atau dibuat-buat dibanding keluaran model yang sebenarnya.
 
+Cara lain yang dicoba tanpa penyisipan dicatat di [laporan percobaan](experiments/2026-11-08-teks-sebelum.md).
+
 ## Prompt
 
 ### id-formal-pair-001
