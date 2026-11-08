@@ -199,6 +199,95 @@ def test_count_without_list_is_ignored(repo: Path) -> None:
     assert validate.validate(repo) == []
 
 
+def write_sample(repo: Path, relative: str, **changes: str) -> Path:
+    language, register, folder, name = relative.split("/")
+    kind = "good" if folder == "good" else "pair"
+    fields = {
+        "id": f"{language}-{register}-{kind}-001",
+        "kind": kind,
+        "source": "Example",
+        "source_url": "",
+        "license": "original",
+        "synthetic": "false",
+        "domain": "umum",
+        "notes": "Note",
+        **changes,
+    }
+    frontmatter = "".join(f"{key}: {value}\n" for key, value in fields.items() if value != "DROP")
+    sections = {"id": "## Sebelum\n\n## Sesudah\n\n## Catatan\n"}.get(
+        language, "## Before\n\n## After\n\n## Notes\n"
+    )
+    path = repo / "samples" / relative
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(f"---\n{frontmatter}---\n\n{sections}", encoding="utf-8")
+    return path
+
+
+@pytest.mark.parametrize("relative", ["id/formal/good/a.md", "en/chat/pairs/a.md"])
+def test_valid_sample_passes(repo: Path, relative: str) -> None:
+    write_sample(repo, relative)
+    assert validate.validate(repo) == []
+
+
+def test_synthetic_sample_passes(repo: Path) -> None:
+    write_sample(repo, "id/email/pairs/a.md", license="synthetic", synthetic="true")
+    assert validate.validate(repo) == []
+
+
+def test_gitkeep_is_not_a_sample(repo: Path) -> None:
+    path = repo / "samples/id/formal/good/.gitkeep"
+    path.parent.mkdir(parents=True)
+    path.touch()
+    assert validate.validate(repo) == []
+
+
+def test_sample_without_frontmatter(repo: Path) -> None:
+    path = repo / "samples/id/formal/good/a.md"
+    path.parent.mkdir(parents=True)
+    path.write_text("No frontmatter\n", encoding="utf-8")
+    assert any("has no frontmatter" in e for e in validate.validate(repo))
+
+
+def test_sample_missing_field(repo: Path) -> None:
+    write_sample(repo, "id/formal/good/a.md", domain="DROP")
+    assert any("missing frontmatter fields: domain" in e for e in validate.validate(repo))
+
+
+@pytest.mark.parametrize(
+    ("changes", "message"),
+    [
+        ({"kind": "pair"}, "folder expects good"),
+        ({"license": "MIT"}, "invalid license"),
+        ({"domain": "hukum"}, "invalid domain"),
+        ({"synthetic": "maybe"}, "invalid synthetic"),
+        ({"synthetic": "true"}, "exactly when"),
+        ({"license": "synthetic"}, "exactly when"),
+        ({"id": "id-formal-001"}, "expected id-formal-good-NNN"),
+        ({"id": "id-email-good-001"}, "expected id-formal-good-NNN"),
+        ({"id": "id-formal-pair-001"}, "expected id-formal-good-NNN"),
+    ],
+)
+def test_invalid_sample_fields(repo: Path, changes: dict[str, str], message: str) -> None:
+    write_sample(repo, "id/formal/good/a.md", **changes)
+    assert any(message in e for e in validate.validate(repo))
+
+
+def test_duplicate_sample_id(repo: Path) -> None:
+    write_sample(repo, "id/formal/good/a.md")
+    write_sample(repo, "id/formal/good/b.md")
+    assert any("repeats id" in e for e in validate.validate(repo))
+
+
+@pytest.mark.parametrize(
+    ("relative", "section"),
+    [("id/formal/pairs/a.md", "Sesudah"), ("en/email/pairs/a.md", "Notes")],
+)
+def test_pair_missing_section(repo: Path, relative: str, section: str) -> None:
+    path = write_sample(repo, relative)
+    path.write_text(path.read_text(encoding="utf-8").replace(f"## {section}\n", ""), "utf-8")
+    assert any(f"missing section {section}" in e for e in validate.validate(repo))
+
+
 def test_main_exit_codes(repo: Path) -> None:
     assert validate.main(["--root", str(repo)]) == 0
     (repo / validate.SKILL_PATH).unlink()

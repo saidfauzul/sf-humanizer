@@ -13,7 +13,7 @@ Each sample is a Markdown file with YAML frontmatter:
 
 ```yaml
 ---
-id: id-formal-0001
+id: id-formal-good-001
 kind: good            # good | pair
 source: Peraturan contoh
 source_url: https://example.org/doc
@@ -26,7 +26,7 @@ notes: Short context for reviewers.
 
 | Field | Description |
 | --- | --- |
-| `id` | Unique ID: `<language>-<register>-<number>` |
+| `id` | Unique ID: `<language>-<register>-<good\|pair>-NNN`, matching the sample's folder |
 | `kind` | `good` or `pair` |
 | `source` | Name of the source document or author |
 | `source_url` | Link to the source; leave empty if there is none |
@@ -35,12 +35,14 @@ notes: Short context for reviewers.
 | `domain` | `pengadaan`, `tata-kelola`, `sop`, `nota-dinas`, `surel` or `umum` |
 | `notes` | Anything reviewers should know |
 
+Pair files also need three sections: `## Sebelum`, `## Sesudah` and `## Catatan` in Indonesian, or `## Before`, `## After` and `## Notes` in English. List the pattern IDs that were fixed in the last section.
+
 ### Rules for samples
 
 - Only submit text whose license is one of the values above, and that you are allowed to share.
 - **Anonymize real documents.** Remove or replace names, phone numbers, email addresses, ID and contract numbers, company names and values that could identify a person, organization or procurement.
 - Do not submit confidential, classified or restricted documents, even anonymized.
-- Mark anything model-generated as `synthetic: true` with `license: synthetic`.
+- Mark anything model-generated as `synthetic: true` with `license: synthetic`, and nothing else.
 - Add attribution to [NOTICE.md](NOTICE.md) for third-party text (`OGL-3.0`, `CC-BY-4.0`).
 
 ## Branches and commits
