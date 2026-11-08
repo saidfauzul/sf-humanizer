@@ -6,7 +6,7 @@ source_url:
 license: synthetic
 synthetic: true
 domain: surel
-notes: ID-01, ID-06. Permintaan dipindahkan ke awal surel demi kejelasan, dengan fakta yang sama.
+notes: ID-06 pada paragraf pertama dan ketiga, ID-02, ID-01, ID-13, dan ID-14 pada paragraf kedua. Permintaan sudah berada di awal surel pada kedua versi, dengan fakta yang sama.
 ---
 
 ## Sebelum
@@ -17,13 +17,13 @@ Yth. Ibu Sari Contoh,
 
 Dengan hormat,
 
-Sehubungan dengan rencana kerja penyusunan Kerangka Acuan Kerja (KAK) untuk pengadaan jasa konsultansi, saya bermaksud mengajukan permohonan perpanjangan waktu penyelesaian. Sesuai jadwal awal, penyusunan KAK ditargetkan selesai pada 14 November 2026.
+Melalui surel ini, saya bermaksud melakukan pengajuan permohonan persetujuan Ibu untuk memperpanjang waktu penyusunan Kerangka Acuan Kerja (KAK) jasa konsultansi dari 14 November menjadi 21 November 2026.
 
-Permohonan ini kami ajukan karena data dari unit pengguna baru kami terima pada 6 November 2026. Data tersebut diperlukan untuk memastikan ruang lingkup, output, dan estimasi kebutuhan tenaga ahli dalam KAK sudah sesuai dengan kebutuhan unit pengguna. Dengan waktu yang tersisa, penyusunan dokumen dikhawatirkan belum dapat diselesaikan dengan kualitas yang memadai, dan kami tidak ingin mengorbankan ketelitian demi mengejar tenggat.
+Penting untuk dicatat bahwa data dari unit pengguna baru kami terima pada 6 November 2026. Kami memerlukan data itu dalam rangka untuk menyesuaikan ruang lingkup, output, dan perkiraan kebutuhan tenaga ahli dalam KAK dengan kebutuhan unit pengguna. Dengan waktu yang tersisa, saya khawatir dokumen mungkin kiranya belum dapat selesai dengan mutu yang sangat memadai, dan kami tidak ingin mengorbankan ketelitian demi mengejar tenggat.
 
-Kami memohon persetujuan Ibu untuk memperpanjang waktu penyusunan KAK dari 14 November menjadi 21 November 2026. Dengan perpanjangan tersebut, kami dapat melakukan reviu internal, berdiskusi dengan unit pengguna bila diperlukan, dan memastikan dokumen siap diajukan untuk tahap berikutnya.
+Dengan tambahan waktu itu, kami dapat melakukan reviu dokumen secara internal, melaksanakan diskusi dengan unit pengguna bila perlu, dan menyiapkan dokumen untuk tahap berikutnya.
 
-Apabila diperlukan, saya siap menyampaikan rincian kegiatan dan pembagian tugas tim agar Ibu dapat meninjau rencana ini secara lebih lengkap. Kami juga akan memberi kabar sebelum tenggat baru apabila ada perkembangan yang memengaruhi jadwal.
+Bila diperlukan, saya siap menyampaikan rincian kegiatan dan pembagian tugas tim agar Ibu dapat meninjau rencana ini lebih lengkap. Kami juga akan memberi kabar sebelum tenggat baru bila ada perkembangan yang memengaruhi jadwal.
 
 Atas perhatian dan persetujuan Ibu, saya ucapkan terima kasih.
 
@@ -55,4 +55,4 @@ Budi Contoh
 
 ## Catatan
 
-ID-01, ID-06. Permintaan dipindahkan ke awal surel demi kejelasan, dengan fakta yang sama.
+ID-06 pada paragraf pertama dan ketiga, ID-02, ID-01, ID-13, dan ID-14 pada paragraf kedua. Permintaan sudah berada di awal surel pada kedua versi, dengan fakta yang sama.

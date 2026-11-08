@@ -11,7 +11,7 @@ notes: Surel ke atasan. Isi fiktif.
 
 Subjek: Usul pemecahan paket alat tulis 2027
 
-Bu Sari,
+Bu Wulan,
 
 Saya mengusulkan paket alat tulis tahun 2027 dipecah menjadi dua: kertas dan toner dalam satu paket, sisanya dalam paket lain. Mohon arahan Ibu sebelum Kamis, karena RUP harus saya kirim ke UKPBJ hari Jumat.
 
@@ -23,4 +23,4 @@ Kalau Ibu setuju, RUP saya sesuaikan besok pagi. Kalau lebih baik dibahas dulu, 
 
 Terima kasih, Bu.
 
-Budi
+Arif

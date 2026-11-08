@@ -6,7 +6,7 @@ source_url:
 license: synthetic
 synthetic: true
 domain: pengadaan
-notes: ID-01, ID-04, ID-07. Salam pembuka dan penutup dipertahankan.
+notes: ID-01 dan ID-04 pada paragraf pertama, ID-04 dan ID-07 pada paragraf kedua, ID-06 pada paragraf ketiga, ID-02 pada paragraf keempat. Salam pembuka dan penutup dipertahankan.
 ---
 
 ## Sebelum
@@ -17,13 +17,13 @@ Yth. Direktur PT Maju Contoh,
 
 Dengan hormat,
 
-Kami dari Pejabat Pengadaan menyampaikan informasi terkait pengiriman 20 unit laptop sesuai kontrak yang berlaku. Berdasarkan catatan kami, batas pengiriman yang disepakati pada 5 November 2026 telah terlewati, dan hingga saat ini barang belum kami terima seluruhnya. Kami telah memeriksa kembali dokumen kontrak dan memastikan bahwa tanggal tersebut tidak berubah.
+Kami sampaikan informasi bahwa pengiriman 20 unit laptop sesuai kontrak telah melewati batas yang disepakati, yaitu 5 November 2026, dan sampai hari ini barang belum kami terima seluruhnya. Selain itu, kami sudah melakukan pemeriksaan kembali terhadap dokumen kontrak, yang mana ini memastikan bahwa tanggal tersebut tidak berubah.
 
-Sesuai ketentuan dalam kontrak, keterlambatan ini menimbulkan Denda Keterlambatan yang akan diberlakukan sejak tanggal batas pengiriman hingga barang diterima dengan lengkap. Kami berharap hal ini dapat menjadi perhatian bersama agar proses penyelesaian pekerjaan dapat segera berjalan dan kebutuhan unit kerja kami dapat terpenuhi tanpa tertunda lebih lama.
+Lebih lanjut, sesuai ketentuan kontrak, Denda Keterlambatan berlaku sejak tanggal batas pengiriman sampai barang kami terima lengkap. Kami berharap penyelesaian pelaksanaan pekerjaan ini segera terwujud agar kebutuhan unit kerja kami tidak tertunda lebih lama.
 
-Oleh karena itu, kami meminta PT Maju Contoh untuk menyampaikan jadwal pengiriman baru paling lambat 10 November 2026. Jadwal tersebut mohon mencantumkan tanggal pengiriman, jumlah unit pada setiap tahap, serta kontak penanggung jawab di lapangan yang dapat kami hubungi apabila diperlukan koordinasi.
+Di sisi lain, mohon PT Maju Contoh melakukan pengiriman jadwal pengiriman baru paling lambat 10 November 2026. Jadwal tersebut perlu mencantumkan tanggal pengiriman, jumlah unit pada setiap tahap, dan kontak penanggung jawab di lapangan yang dapat kami hubungi bila perlu melakukan koordinasi.
 
-Apabila ada kendala yang menyebabkan keterlambatan, mohon disampaikan secara tertulis beserta dokumen pendukung yang relevan agar dapat kami pertimbangkan sesuai ketentuan kontrak.
+Perlu diketahui bahwa bila ada kendala yang menyebabkan keterlambatan ini, mohon sampaikan secara tertulis beserta dokumen pendukungnya agar dapat kami pertimbangkan sesuai ketentuan kontrak.
 
 Demikian surel ini kami sampaikan. Atas perhatian dan kerja samanya, kami ucapkan terima kasih.
 
@@ -44,7 +44,7 @@ Pengiriman 20 unit laptop sesuai kontrak telah melewati batas yang disepakati, y
 
 Sesuai ketentuan kontrak, Denda Keterlambatan berlaku sejak tanggal batas pengiriman sampai barang kami terima lengkap. Kami berharap pekerjaan ini segera selesai agar kebutuhan unit kerja kami tidak tertunda lebih lama.
 
-Mohon PT Maju Contoh mengirim jadwal pengiriman baru paling lambat 10 November 2026. Cantumkan tanggal pengiriman, jumlah unit pada setiap tahap, dan kontak penanggung jawab di lapangan yang dapat kami hubungi bila perlu berkoordinasi.
+Mohon PT Maju Contoh mengirim jadwal pengiriman baru paling lambat 10 November 2026. Jadwal tersebut perlu mencantumkan tanggal pengiriman, jumlah unit pada setiap tahap, dan kontak penanggung jawab di lapangan yang dapat kami hubungi bila perlu berkoordinasi.
 
 Bila ada kendala yang menyebabkan keterlambatan ini, mohon sampaikan secara tertulis beserta dokumen pendukungnya agar dapat kami pertimbangkan sesuai ketentuan kontrak.
 
@@ -57,4 +57,4 @@ Pejabat Pengadaan
 
 ## Catatan
 
-ID-01, ID-04, ID-07. Salam pembuka dan penutup dipertahankan.
+ID-01 dan ID-04 pada paragraf pertama, ID-04 dan ID-07 pada paragraf kedua, ID-06 pada paragraf ketiga, ID-02 pada paragraf keempat. Salam pembuka dan penutup dipertahankan.
