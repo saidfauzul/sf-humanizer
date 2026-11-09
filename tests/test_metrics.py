@@ -314,3 +314,62 @@ def test_main_check_locked_uses_terms_option(tmp_path: Path) -> None:
     second.write_text("Mereka hadir hari ini.", "utf-8")
     args = ["--check-locked", str(first), str(second), "--terms", "Tim Reviu"]
     assert metrics.main([*args, "--lang", "id", "--json"]) == 1
+
+
+@pytest.mark.parametrize(
+    ("intro", "phrase"),
+    [
+        ("I have attached three documents for your review:", "three documents"),
+        ("Kami lampirkan tiga dokumen berikut:", "tiga dokumen"),
+    ],
+)
+def test_count_in_colon_line_mismatch(intro: str, phrase: str) -> None:
+    assert metrics.check_counts(f"{intro}\n\n{items(4)}") == [
+        {"phrase": phrase, "line": 1, "expected": 3, "found": 4}
+    ]
+
+
+@pytest.mark.parametrize(
+    "intro",
+    ["Kami lampirkan empat dokumen berikut:", "Ada 4 orang teknisi yang hadir:"],
+)
+def test_count_in_colon_line_match(intro: str) -> None:
+    assert metrics.check_counts(f"{intro}\n\n{items(4)}") == []
+
+
+def test_count_with_digit_and_words_between() -> None:
+    result = metrics.check_counts(f"Kami menugaskan 4 orang teknisi:\n\n{items(5)}")
+    assert [(item["expected"], item["found"]) for item in result] == [(4, 5)]
+
+
+@pytest.mark.parametrize(
+    "intro",
+    [
+        "On 5 March 2026 we agreed:",
+        "On March 5 we agreed:",
+        "Pada tanggal 3 kami sepakat:",
+        "Rapat 7 Oktober membahas:",
+        "On 5 October 2026 we agreed:",
+        "On October 5 we agreed:",
+        "Anggaran Rp 5 juta dipakai untuk:",
+        "We spent $5 on:",
+        "Pasal 3 mengatur:",
+        "Choose one of these:",
+        "This one needs:",
+        "We met two or three vendors:",
+    ],
+)
+def test_count_in_colon_line_ignored(intro: str) -> None:
+    assert metrics.check_counts(f"{intro}\n\n{items(4)}") == []
+
+
+def test_number_without_colon_or_noun_ignored() -> None:
+    text = f"I have attached three documents for your review.\n\n{items(4)}"
+    assert metrics.check_counts(text) == []
+
+
+def test_october_date_is_locked() -> None:
+    problems = metrics.check_locked("Due 5 October 2026.", "Due soon.", [])["problems"]
+    assert {"kind": "date", "segment": "5 October 2026", "status": "missing", "found": None} in (
+        problems
+    )

@@ -1,7 +1,7 @@
 ---
 name: sf-humanizer
 description: Rewrites AI-sounding text so it reads as human-written, with facts unchanged. Works in Indonesian and English, with presets by language and register. Use when the user says "sf-humanizer", "humanize", "manusiakan", or "tulis ulang agar natural".
-version: 0.1.0-rc.1
+version: 0.1.0-rc.2
 ---
 
 # sf-humanizer
@@ -92,7 +92,8 @@ Steps 3 to 6 are internal. `cepat` mode does not show them.
 
 ## Core rules
 
-- Rewrite, never trim. Keep the same information in the same order of ideas, unless clarity demands a change.
+- Rewrite, never trim. Keep the same information in the same order of ideas, unless clarity demands a change. A generic opener or closer that carries no fact or claim specific to the text (patterns ID-03, EN-04) may be removed; anything carrying a fact, request, or a specific claim must be kept.
+- In a conversation, never remove a line or claim that a later turn responds to; rewrite it instead.
 - Leave numbers, names, dates, references, quotations and locked terms unchanged.
 - Keep the author's claims. Never add facts, examples, sources or opinions.
 - Keep the strength of every obligation and claim. Do not turn "perlu" or "sebaiknya" into "wajib", or "should" into "must", and do not drop a hedge.

@@ -11,9 +11,10 @@ patterns-*.md, a line must not contain a language followed by one of its registe
 are exempt, because that is where presets are defined.
 
 Count heuristic: a non-list line ending in a colon that contains a number word from
-one to ten (English or Indonesian) followed by another word, and that is immediately
-followed by a list, must introduce exactly that many top-level items. Phrases such as
-"one of", "salah satu" and "two or three" are not treated as counts.
+one to ten (English or Indonesian) or a standalone digit from 1 to 10 followed by another
+word, and that is immediately followed by a list, must introduce exactly that many
+top-level items. Phrases such as "one of", "salah satu" and "two or three", and numbers
+that are part of a date, time, amount or reference, are not treated as counts.
 
 Sample rule: every Markdown file in a register's good/ or pairs/ folder needs the
 frontmatter fields from CONTRIBUTING.md. Its id must be unique and match its location
@@ -59,6 +60,7 @@ NUMBER_WORDS = {
             range(1, 11),
         )
     ),
+    **{str(number): number for number in range(1, 11)},
 }
 
 SAMPLE_FIELDS = ("id", "kind", "source", "source_url", "license", "synthetic", "domain", "notes")
@@ -105,10 +107,26 @@ INLINE_CODE_RE = re.compile(r"`[^`]*`")
 LINK_RE = re.compile(r"(?<!!)\[[^\]]*\]\(([^)\s]+)[^)]*\)")
 URL_SCHEME_RE = re.compile(r"^[a-z][a-z0-9+.-]*:", re.IGNORECASE)
 LIST_ITEM_RE = re.compile(r"^(\s*)(?:[-*+]|\d+[.)])\s+")
-COUNT_RE = re.compile(
-    r"(?<![\w-])(?<!salah )(?<!or )(?<!atau )(" + "|".join(NUMBER_WORDS) + r")\s+"
-    r"(?!(?:of|dari|or|atau|per|to|sampai|hingga|more|lebih)\b)[^\W\d_]",
-    re.IGNORECASE,
+MONTHS = (
+    "januari februari maret april mei juni juli agustus september oktober november desember "
+    "january february march may june july august october december".split()
+)
+DATE_MONTHS = set(MONTHS) | set(
+    "jan feb mar apr jun jul aug agu sep sept oct okt nov dec des".split()
+)
+NOT_COUNT_BEFORE = DATE_MONTHS | set(
+    "or atau salah tanggal tgl date pukul jam pasal ayat section article clause nomor no number "
+    "page halaman bab chapter rp idr usd".split()
+)
+NOT_ONE_BEFORE = set("this that the no each every any which another".split())
+NOT_COUNT_AFTER = DATE_MONTHS | set(
+    "of dari or atau and dan per to sampai hingga more lebih ribu juta miliar triliun rupiah "
+    "dolar thousand million billion trillion dollars persen percent am pm pagi siang sore malam "
+    "hari minggu bulan tahun jam menit days weeks months years hours minutes should must can "
+    "may might will".split()
+)
+STATED_NUMBER = re.compile(
+    r"(?<![\w.,/:$-])(" + "|".join(NUMBER_WORDS) + r")\s+([^\W\d_]+)", re.IGNORECASE
 )
 
 
@@ -269,6 +287,19 @@ def count_list_items(lines: list[str], start: int) -> int:
     return count
 
 
+def stated_count(line: str) -> re.Match | None:
+    """Return the first number in line that states how many things follow."""
+    for match in STATED_NUMBER.finditer(line):
+        before = line[: match.start()].split()
+        previous = before[-1].strip(".,").lower() if before else ""
+        if previous in NOT_COUNT_BEFORE or match.group(2).lower() in NOT_COUNT_AFTER:
+            continue
+        if match.group(1).lower() == "one" and previous in NOT_ONE_BEFORE:
+            continue
+        return match
+    return None
+
+
 def check_counts(root: Path) -> list[str]:
     """Check that stated counts match the lists they introduce."""
     errors = []
@@ -279,7 +310,7 @@ def check_counts(root: Path) -> list[str]:
         for index, line in enumerate(lines):
             if LIST_ITEM_RE.match(line) or not line.rstrip().rstrip("*_").endswith(":"):
                 continue
-            stated = COUNT_RE.search(line)
+            stated = stated_count(line)
             if stated is None:
                 continue
             found = count_list_items(lines, index + 1)

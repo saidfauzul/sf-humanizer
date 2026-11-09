@@ -30,7 +30,7 @@ Patterns run from strongest to weakest. A **strong** pattern can be acted on alo
 
 - Look for: "In today's fast-paced world", "In conclusion", "I hope this email finds you well" where it adds nothing, "Together we can".
 - Why: they fit any topic, so they say nothing about this one.
-- Fix: begin with the point and end on the decision or next step.
+- Fix: begin with the point and end on the decision or next step. An opener or closer with no fact or specific claim may be removed; one carrying a fact, request or specific claim must be kept.
 - Before: In today's evolving governance landscape, oversight matters. Please submit the Statement of Work by 15 March.
 - After: Please submit the Statement of Work by 15 March.
 
