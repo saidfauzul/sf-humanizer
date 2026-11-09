@@ -32,6 +32,12 @@ Version `0.1.0-alpha.2` was folded into `0.1.0-alpha.3`, because Tahap 2 did not
 - Sample ids now use `<lang>-<register>-<good|pair>-NNN`.
 - CI uses `actions/checkout@v5` and runs on `ubuntu-24.04`.
 
+### Fixed
+
+- `scripts/metrics.py` and `tools/validate.py` now read a count from any line ending in a colon, such as "three documents", and ignore numbers in dates, times, amounts and references.
+- Core rules and the en-chat preset now say to rewrite, not remove, a line that a later turn responds to.
+- Core rules and patterns ID-03 and EN-04 now state when a generic opener or closer may be removed.
+
 ## [0.0.1] - 2026-11-08
 
 ### Added
