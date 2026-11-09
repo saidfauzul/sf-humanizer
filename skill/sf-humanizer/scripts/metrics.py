@@ -133,6 +133,23 @@ COUNT_RE = re.compile(
     r"(?<![\w-])(?<!atau )(?<!or )(" + "|".join(NUMBER_WORDS) + r")\s+(?:" + COUNT_NOUNS + r")\b",
     re.IGNORECASE,
 )
+DATE_MONTHS = set(MONTHS.lower().split("|")) | set(
+    "october jan feb mar apr jun jul aug agu sep sept oct okt nov dec des".split()
+)
+NOT_COUNT_BEFORE = DATE_MONTHS | set(
+    "or atau salah tanggal tgl date pukul jam pasal ayat section article clause nomor no number "
+    "page halaman bab chapter rp idr usd".split()
+)
+NOT_ONE_BEFORE = set("this that the no each every any which another".split())
+NOT_COUNT_AFTER = DATE_MONTHS | set(
+    "of dari or atau and dan per to sampai hingga more lebih ribu juta miliar triliun rupiah "
+    "dolar thousand million billion trillion dollars persen percent am pm pagi siang sore malam "
+    "hari minggu bulan tahun jam menit days weeks months years hours minutes should must can "
+    "may might will".split()
+)
+STATED_NUMBER = re.compile(
+    r"(?<![\w.,/:$-])(" + "|".join(NUMBER_WORDS) + r")\s+([^\W\d_]+)", re.IGNORECASE
+)
 LIST_ITEM = re.compile(r"^(\s*)(?:[-*+•]|\d+[.)])\s+")
 WORD = re.compile(r"[^\W_]+(?:[-'’/][^\W_]+)*")
 
@@ -340,15 +357,36 @@ def count_list_items(lines: list[str], start: int) -> int:
     return count
 
 
+def stated_count(line: str) -> re.Match | None:
+    """Return the first number in line that states how many things follow."""
+    for match in STATED_NUMBER.finditer(line):
+        before = line[: match.start()].split()
+        previous = before[-1].strip(".,").lower() if before else ""
+        if previous in NOT_COUNT_BEFORE or match.group(2).lower() in NOT_COUNT_AFTER:
+            continue
+        if match.group(1).lower() == "one" and previous in NOT_ONE_BEFORE:
+            continue
+        return match
+    return None
+
+
 def check_counts(text: str) -> list[dict]:
-    """Compare stated counts such as "lima hal" with the list that follows."""
+    """Compare stated counts with the list that follows.
+
+    A count is a number word and a counting noun ("lima hal") on any line, or a number and
+    any other word ("three documents") on a line that ends in a colon.
+    """
     lines = text.splitlines()
     mismatches = []
     for index, line in enumerate(lines):
         if LIST_ITEM.match(line):
             continue
         match = COUNT_RE.search(line)
-        if match is None or re.match(r"\s+(?:atau|or)\b", line[match.end(1) :], re.IGNORECASE):
+        if match is not None and re.match(r"\s+(?:atau|or)\b", line[match.end(1) :], re.IGNORECASE):
+            match = None
+        if match is None and line.rstrip().rstrip("*_").endswith(":"):
+            match = stated_count(line)
+        if match is None:
             continue
         found = count_list_items(lines, index + 1)
         expected = NUMBER_WORDS[match.group(1).lower()]

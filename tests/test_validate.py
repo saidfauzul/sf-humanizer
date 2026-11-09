@@ -194,6 +194,20 @@ def test_non_counts_are_ignored(repo: Path, intro: str) -> None:
     assert validate.validate(repo) == []
 
 
+@pytest.mark.parametrize(
+    "intro",
+    ["On March 5 we agreed:", "Pada tanggal 3 kami sepakat:", "Anggaran Rp 5 juta untuk:"],
+)
+def test_numbers_in_dates_and_amounts_are_ignored(repo: Path, intro: str) -> None:
+    write_reference(repo, "a.md", f"{intro}\n\n- a\n- b\n- c\n- d\n")
+    assert validate.validate(repo) == []
+
+
+def test_digit_count_mismatch_fails(repo: Path) -> None:
+    write_reference(repo, "a.md", "Kami menugaskan 3 orang teknisi:\n\n- a\n- b\n")
+    assert any("but the list has 2" in e for e in validate.validate(repo))
+
+
 def test_count_without_list_is_ignored(repo: Path) -> None:
     write_reference(repo, "a.md", "Three things:\n\nJust prose.\n")
     assert validate.validate(repo) == []
