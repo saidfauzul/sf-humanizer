@@ -21,8 +21,8 @@ Version `0.1.0-alpha.2` was folded into `0.1.0-alpha.3`, because Tahap 2 did not
 - Indonesian and English pattern catalogs.
 - Locking rules and Indonesian and English glossaries.
 - Validator checks for reference size, preset names in generic rules, internal links and stated counts.
-- Wave 1 corpus: 24 synthetic samples for three presets, pending owner review.
-- Wave 2 corpus: 64 synthetic samples for the remaining eight presets, pending owner review.
+- Wave 1 corpus: 24 synthetic samples for three presets, pending my review.
+- Wave 2 corpus: 64 synthetic samples for the remaining eight presets, pending my review.
 - Quality review of all 88 samples, recorded in `docs/review-samples-2026-11-08.md`.
 - `docs/sources.md`, `docs/synthetic-prompts.md` and `docs/PLAN.md`.
 - Sample validation for frontmatter, ids and pair sections.
