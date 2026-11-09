@@ -109,10 +109,10 @@ URL_SCHEME_RE = re.compile(r"^[a-z][a-z0-9+.-]*:", re.IGNORECASE)
 LIST_ITEM_RE = re.compile(r"^(\s*)(?:[-*+]|\d+[.)])\s+")
 MONTHS = (
     "januari februari maret april mei juni juli agustus september oktober november desember "
-    "january february march may june july august december".split()
+    "january february march may june july august october december".split()
 )
 DATE_MONTHS = set(MONTHS) | set(
-    "october jan feb mar apr jun jul aug agu sep sept oct okt nov dec des".split()
+    "jan feb mar apr jun jul aug agu sep sept oct okt nov dec des".split()
 )
 NOT_COUNT_BEFORE = DATE_MONTHS | set(
     "or atau salah tanggal tgl date pukul jam pasal ayat section article clause nomor no number "

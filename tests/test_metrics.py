@@ -364,3 +364,10 @@ def test_count_in_colon_line_ignored(intro: str) -> None:
 def test_number_without_colon_or_noun_ignored() -> None:
     text = f"I have attached three documents for your review.\n\n{items(4)}"
     assert metrics.check_counts(text) == []
+
+
+def test_october_date_is_locked() -> None:
+    problems = metrics.check_locked("Due 5 October 2026.", "Due soon.", [])["problems"]
+    assert {"kind": "date", "segment": "5 October 2026", "status": "missing", "found": None} in (
+        problems
+    )

@@ -22,7 +22,7 @@ from pathlib import Path
 
 MONTHS = (
     "Januari|Februari|Maret|April|Mei|Juni|Juli|Agustus|September|Oktober|November|Desember|"
-    "January|February|March|May|June|July|August|December"
+    "January|February|March|May|June|July|August|October|December"
 )
 STOPWORDS = {
     "id": set(
@@ -134,7 +134,7 @@ COUNT_RE = re.compile(
     re.IGNORECASE,
 )
 DATE_MONTHS = set(MONTHS.lower().split("|")) | set(
-    "october jan feb mar apr jun jul aug agu sep sept oct okt nov dec des".split()
+    "jan feb mar apr jun jul aug agu sep sept oct okt nov dec des".split()
 )
 NOT_COUNT_BEFORE = DATE_MONTHS | set(
     "or atau salah tanggal tgl date pukul jam pasal ayat section article clause nomor no number "
