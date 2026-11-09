@@ -1,6 +1,6 @@
 [project]
 name = "sf-humanizer"
-version = "0.1.0rc2"
+version = "0.1.0"
 description = "Development tooling for the sf-humanizer Claude skill"
 requires-python = ">=3.9"
 dependencies = []

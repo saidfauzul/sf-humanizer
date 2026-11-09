@@ -1,7 +1,7 @@
 ---
 name: sf-humanizer
 description: Rewrites AI-sounding text so it reads as human-written, with facts unchanged. Works in Indonesian and English, with presets by language and register. Use when the user says "sf-humanizer", "humanize", "manusiakan", or "tulis ulang agar natural".
-version: 0.1.0-rc.2
+version: 0.1.0
 ---
 
 # sf-humanizer
