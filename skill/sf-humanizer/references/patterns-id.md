@@ -22,7 +22,7 @@ Pola diurutkan dari yang paling kuat. Pola **kuat** boleh ditindak sendiri. Pola
 
 - Cari: "Di era yang terus berkembang", "Dalam dunia yang dinamis", "Sebagai kesimpulan", "Dengan demikian dapat disimpulkan".
 - Alasan: bisa ditempel pada topik apa saja, jadi tidak menyampaikan apa-apa.
-- Perbaikan: mulai dari pokok persoalan dan akhiri pada keputusan atau tindak lanjut.
+- Perbaikan: mulai dari pokok persoalan dan akhiri pada keputusan atau tindak lanjut. Formula yang tidak memuat fakta atau klaim khusus boleh dihapus; yang memuat fakta, permintaan, atau klaim khusus harus dipertahankan.
 - Sebelum: Di era tata kelola yang terus berkembang, pengadaan memegang peranan penting. Unit kerja wajib menyusun KAK sebelum 15 Maret.
 - Sesudah: Unit kerja wajib menyusun KAK sebelum 15 Maret.
 

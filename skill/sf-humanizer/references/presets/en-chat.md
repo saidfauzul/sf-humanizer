@@ -47,6 +47,7 @@ This register covers instant messages and short work threads with a teammate, a 
 - Never add a greeting or sign-off to a single-line message.
 - Do not expand fragments into full sentences or merge separate turns.
 - Do not change who said what, or the order of turns.
+- When another speaker replies to a line, rewrite the pattern in that line instead of removing it, and keep the claim the reply responds to, so the thread still makes sense.
 - Do not drop a date, number or name to make a line shorter.
 - Do not add slang, emoji or warmth the source does not have.
 
