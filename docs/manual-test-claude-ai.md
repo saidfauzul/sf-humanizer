@@ -3,7 +3,7 @@
 ## Memasang skill
 
 1. Buka **Settings > Skills** di claude.ai.
-2. Unggah `sf-humanizer-0.1.0-rc.2.zip`.
+2. Unggah `sf-humanizer-0.1.0.zip`.
 3. Pastikan skill `sf-humanizer` aktif.
 
 ## Enam pemeriksaan

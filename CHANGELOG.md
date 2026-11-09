@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-09
+
 Version `0.1.0-alpha.2` was folded into `0.1.0-alpha.3`, because Tahap 2 did not bump the version.
 
 ### Added
