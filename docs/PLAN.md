@@ -47,7 +47,7 @@ Setiap penulisan ulang mengikuti tujuh langkah di `SKILL.md`. Fakta, angka, nama
 2. Teks "sebelum" dibuat dari prompt yang dicatat di `docs/synthetic-prompts.md`.
 3. Teks "sesudah" ditulis mengikuti katalog pola dan aturan penguncian.
 4. Sampel diberi frontmatter sesuai `CONTRIBUTING.md` dan harus lulus `tools/validate.py`.
-5. Pemilik repo meninjau sampel sebelum dipakai sebagai contoh.
+5. Saya meninjau sampel sebelum dipakai sebagai contoh.
 6. Pada Tahap 3 dan 4, `tools/build.py` menyusun contoh dan profil metrik per preset dari korpus.
 
 Dokumen nyata harus dianonimkan. Semua nama, perusahaan, nomor surat, dan nilai kontrak pada gelombang pertama bersifat fiktif. Teks buatan model ditandai `synthetic: true`.
@@ -63,6 +63,6 @@ Dokumen nyata harus dianonimkan. Semua nama, perusahaan, nomor surat, dan nilai 
 
 - Kode, komentar, dan pesan commit berbahasa Inggris. Dokumentasi pengguna berbahasa Indonesia, dengan README bahasa Inggris.
 - Nama branch memakai awalan `feat/`, `fix/`, `docs/`, atau `samples/`, dan commit mengikuti Conventional Commits.
-- Setiap perubahan masuk lewat pull request dengan CI hijau (ruff, pytest, validate), dan pemilik repo yang melakukan merge.
+- Setiap perubahan masuk lewat pull request dengan CI hijau (ruff, pytest, validate), dan saya yang melakukan merge.
 - Lisensi kode adalah MIT. Atribusi pihak ketiga dicatat di `NOTICE.md`.
 - Repo dibuat publik pada Tahap 5, dan Private vulnerability reporting dinyalakan saat itu.

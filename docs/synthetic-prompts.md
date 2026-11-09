@@ -10,7 +10,7 @@ Setiap prompt dikirim apa adanya ke model Claude, sebagai draf pertama, tanpa pa
 
 Teks "sesudah" ditulis ulang oleh Claude mengikuti katalog di `skill/sf-humanizer/references/patterns-*.md` dan aturan penguncian di `locking.md`. Teks itu lalu diperiksa terhadap fakta di prompt, segmen terkunci, dan jumlah butir.
 
-Teks "sesudah" dan teks `good/` pada gelombang ini juga buatan model, bukan tulisan manusia. Karena itu semuanya ditandai `synthetic: true` dan `license: synthetic`, sesuai CONTRIBUTING.md. Setelah pemilik repo meninjau dan menyuntingnya sendiri, statusnya dapat diubah.
+Teks "sesudah" dan teks `good/` pada gelombang ini juga buatan model, bukan tulisan manusia. Karena itu semuanya ditandai `synthetic: true` dan `license: synthetic`, sesuai CONTRIBUTING.md. Setelah saya tinjau dan sunting sendiri, statusnya dapat diubah.
 
 ## Teks "sebelum" yang dibuat ulang
 
