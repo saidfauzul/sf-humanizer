@@ -349,6 +349,8 @@ def test_count_with_digit_and_words_between() -> None:
         "On March 5 we agreed:",
         "Pada tanggal 3 kami sepakat:",
         "Rapat 7 Oktober membahas:",
+        "On 5 October 2026 we agreed:",
+        "On October 5 we agreed:",
         "Anggaran Rp 5 juta dipakai untuk:",
         "We spent $5 on:",
         "Pasal 3 mengatur:",
